@@ -1,0 +1,31 @@
+.customScrollBarLight::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.customScrollBarLight::-webkit-scrollbar {
+  width: 4px;
+  height: 10px;
+  background-color: #fff;
+}
+
+.customScrollBarLight::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #e3eaed;
+}
+
+.customScrollBarDark::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #212B36;
+}
+
+.customScrollBarDark::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+  background-color: #212B36;
+}
+
+.customScrollBarDark::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #3a4b5d;
+}
