@@ -382,7 +382,7 @@ export default function Pricing() {
         <DialogTitle textAlign="center">Complete the payment</DialogTitle>
         <DialogContent>
           <Grid container spacing={3}>
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <Box
                 p={2}
                 sx={{
@@ -414,9 +414,9 @@ export default function Pricing() {
                   Pay
                 </Button>
               </Box>
-            </Grid>
+            </Grid> */}
 
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <Box
                 p={2}
                 sx={{

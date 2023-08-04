@@ -128,7 +128,6 @@ export default function Login() {
 
   window.onload = function () {
     window.setTimeout(() => {
-      console.log("AAAAAAAA");
       console.log(ref.current.offsetWidth);
       window.google.accounts.id.initialize({
         client_id: googleClientId,
@@ -207,15 +206,15 @@ export default function Login() {
         <LandingHeader />
 
         <Box display="flex" justifyContent="center" alignItems="center" minWidth="100%" flexGrow="1">
-          <Grid item xs={11} md={4}>
+          <Grid item xs={11} md={5}>
             <FormikProvider value={formik}>
               <Box
                 sx={{
                   backgroundColor: "background.neutral",
                   paddingTop: 4,
                   paddingBottom: 4,
-                  paddingRight: { md: 14, xs: 3 },
-                  paddingLeft: { md: 14, xs: 3 },
+                  paddingRight: { md: 10, xs: 3 },
+                  paddingLeft: { md: 10, xs: 3 },
                   borderRadius: 1,
                 }}
               >
@@ -323,14 +322,14 @@ export default function Login() {
 
                     <div id="buttonDiv" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}></div>
 
-                    <Box pr={1} pl={1}>
+                    <Box pr={1} pl={1} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                       <Button
-                        fullWidth
                         variant="contained"
                         // size='large'
                         ref={ref}
                         sx={{
                           backgroundColor: "#ff7b00",
+                          width: {md: "70%", xs: "100%"},
                           ":hover": {
                             bgcolor: "orange",
                             color: "white",
