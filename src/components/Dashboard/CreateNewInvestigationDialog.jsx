@@ -20,6 +20,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { chains } from '../../utils/supportedChains';
+import MemoryIcon from "@mui/icons-material/Memory";
 
 export default function CreateNewInvestigationDialog() {
     const dispatch = useDispatch()
@@ -84,7 +85,7 @@ export default function CreateNewInvestigationDialog() {
                                         error={Boolean(touched.address && errors.address)}
                                         helperText={touched.address && errors.address}
                                         InputProps={{
-                                            startAdornment: <InputAdornment position="start"><EmailIcon sx={{ opacity: 0.5 }} /></InputAdornment>,
+                                            startAdornment: <InputAdornment position="start"><MemoryIcon sx={{ opacity: 0.5 }} /></InputAdornment>,
                                         }}
                                     />
                                 </Box>

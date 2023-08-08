@@ -47,7 +47,7 @@ export default function Notifications() {
                 <Box pb={3} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Typography variant='h5'>Enabled Notifications</Typography>
 
-                    <Typography variant='subtitle1' color='text.secondary'>Notifications Remaining : <span style={{ color: 'black', fontWeight: 'bold' }}>{planStats?.remaining_notifications}</span>
+                    <Typography variant='subtitle1' color='text.secondary'>Notifications Remaining : <span style={{ color: 'black', fontWeight: 'bold' }}>{3 - notifications.length}</span>
                     </Typography>
                 </Box>
 

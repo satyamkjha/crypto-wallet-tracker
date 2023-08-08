@@ -108,7 +108,7 @@ export default function Pricing() {
             <span style={{ color: "green" }}>
               {currentPlan === 0 && " Free"}
               {currentPlan === 1 && " Beginner"}
-              {currentPlan === 2 && " Enterprise"}/ {formatDate(planStats?.subscription_end)}
+              {currentPlan === 2 && " Enterprise"}{planStats?.subscription_end &&  "/"+formatDate(planStats?.subscription_end)}
             </span>
           </Typography>
         </Box>

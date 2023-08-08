@@ -14,7 +14,7 @@ function InvestigationCard({ investigation }) {
     const [deleting, setdeleting] = useState(false)
 
     return (
-        <Grid item md={3} xs={12}>
+        <Grid item md={4} xs={12}>
             <Box
                 p={3}
                 pb={2}
@@ -61,7 +61,7 @@ function InvestigationCard({ investigation }) {
                     </Box>
 
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Box sx={{ flexGrow: 1, marginRight: 1 }}>
+                        <Box sx={{ flexGrow: 1, marginRight: 5 }}>
                             <Button variant='outlined' size='large' fullWidth onClick={() => { navigate(`/investigation/${investigation.id}/${investigation.number}/${investigation.address}/${investigation.chain}`) }}>View Investigation</Button>
                         </Box>
 

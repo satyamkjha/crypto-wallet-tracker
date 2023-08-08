@@ -40,6 +40,7 @@ export default function Dashboard() {
                             return <InvestigationCard investigation={investigation} />
                         })
                     }
+                    
 
                     {
                         planStats?.remaining_investigations > 0 && <Grid item md={3} xs={12}>
