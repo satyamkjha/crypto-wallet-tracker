@@ -5,10 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        REACT_APP_BACKEND_URL: https://f4f8-2406-7400-43-5d8b-293c-a6ad-72ee-a9b3.ngrok-free.app
     ports:
       - "5002:5002"
+    env_file:
+      - .env
     command: >
       sh -c "yarn global add serve && serve -s build"
     healthcheck:
