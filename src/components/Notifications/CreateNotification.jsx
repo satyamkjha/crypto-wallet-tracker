@@ -29,7 +29,7 @@ import { chains } from "../../utils/supportedChains";
 import CancelIcon from "@mui/icons-material/Cancel";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import MemoryIcon from "@mui/icons-material/Memory";
-import { selectPlanStats } from "../../redux/slices/dashboardSlice";
+import { getPlanStats, selectPlanStats } from '../../redux/slices/dashboardSlice';
 
 export default function CreateNotification() {
   const dispatch = useDispatch();
