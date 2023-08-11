@@ -24,3 +24,10 @@ services:
         parallelism: 1
         delay: 10s
         order: start-first
+    networks:
+      - public
+      - default
+networks:
+  public:
+    external: true
+  default:
