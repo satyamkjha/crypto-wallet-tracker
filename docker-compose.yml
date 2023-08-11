@@ -12,7 +12,7 @@ services:
     command: >
       sh -c "yarn global add serve && serve -s build"
     healthcheck:
-      test: curl --fail http://localhost:3000 || exit 1
+      test: curl --fail http://localhost:5002 || exit 1
       interval: 30s
       timeout: 5s
       retries: 5
