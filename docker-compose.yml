@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   wallet-tracker-frontend:
-    image: tracker-frontend
+    image: 132830644905.dkr.ecr.us-east-2.amazonaws.com/tracker_frontend:$ENV
     build:
       context: .
       dockerfile: Dockerfile
