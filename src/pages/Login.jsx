@@ -144,14 +144,34 @@ export default function Login() {
   };
 
   // Metamask login
-  const { status, connect, account, chainId, ethereum } = useMetaMask();
+  const { status, connect, ethereum } = useMetaMask();
   const [metamaskConnecting, setmetamaskConnecting] = useState(false);
-  const metaMaskeSignup = async (account, chainId) => {
+
+  const connectToMetamask = async () => {
+    if (window.ethereum.selectedAddress) {
+      getNonce(window.ethereum.selectedAddress);
+    }
+  }
+
+  const getNonce = async (account) => {
+    await axios.get(`${backendServerBaseURL}/api/auth/login?account=${account}&type=metamask`).then((response) => {
+      metaMaskeSignup(account, response.data.nonce)  
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+
+  const metaMaskeSignup = async (account, nonce) => {
+    var from = window.ethereum.selectedAddress;
+    var params = [from, nonce];
+    var method = "personal_sign";
+    const signature = await ethereum.request({ method, params });
+
     await axios
       .post(`${backendServerBaseURL}/api/auth/login`, {
         type: "metamask",
+        signature: signature,
         account: account,
-        chainId: chainId,
       })
       .then((response) => {
         console.log(response);
@@ -194,8 +214,7 @@ export default function Login() {
 
     if (status === "connected") {
       if (metamaskConnecting) {
-        console.log(`Connected account ${account} on chain ID ${chainId}`);
-        metaMaskeSignup(account, chainId);
+        connectToMetamask()
       }
     }
   }, [status]);

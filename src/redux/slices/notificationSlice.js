@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from '../../utils/axios';
 import { backendServerBaseURL } from '../../utils/backendServerBaseURL';
+import { getPlanStats } from './dashboardSlice';
 
 const initialState = {
 	openCreateNotificationDialog: false,
@@ -151,6 +152,7 @@ export const createNotification = createAsyncThunk(
 		if (response.status === 200 && response.data.status === 'ok') {
 			thunkAPI.dispatch(updateOpenCreateNotificationDialog(false));
 			thunkAPI.dispatch(getNotifications());
+			thunkAPI.dispatch(getPlanStats());
 		}
 
 		if (response.status === 200 && response.data.status === 'error') {

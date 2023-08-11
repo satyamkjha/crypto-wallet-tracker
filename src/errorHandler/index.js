@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { axiosInstance } from '../utils/axios';
+import axiosInstance from '../utils/axios';
 
 export default function ErrorHandler({ children }) {
 	useEffect(() => {
