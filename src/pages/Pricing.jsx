@@ -370,7 +370,9 @@ export default function Pricing() {
               }}
             >
               <Typography variant="body2" sx={{ fontWeight: "bold" }} textAlign="center">
-                For any Custom Plans - <Link sx={{ cursor: "pointer" }}>Contact US</Link>
+                For any Custom Plans - <Link onClick={() => {
+                                        window.open('mailto:info@credshields.com', '_blank');
+                                    }} sx={{ cursor: "pointer" }}>Contact US</Link>
               </Typography>
             </Box>
           </Grid>

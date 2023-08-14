@@ -42,7 +42,7 @@ export default function Settings() {
   });
 
   const formik = useFormik({
-    initialValues: {
+    initialValues: { 
       email: "",
       newEmail: "",
       consent: true,

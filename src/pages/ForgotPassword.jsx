@@ -90,7 +90,9 @@ export default function ForgotPassword() {
                                         <PhotoCameraIcon />
                                     </Fab> */}
 
-                                    <Button variant="contained" sx={{ backgroundColor: 'primary.light' }}>Contact us</Button>
+                                    <Button onClick={() => {
+                                        window.open('mailto:info@credshields.com', '_blank');
+                                    }} variant="contained" sx={{ backgroundColor: 'primary.light' }}>Contact us</Button>
                                 </Box>
                             </Box>
                         </Container>
