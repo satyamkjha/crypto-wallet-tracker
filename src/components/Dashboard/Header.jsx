@@ -1,5 +1,4 @@
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import { Avatar, Box, Button, Container, Fab, Grid, Stack } from '@mui/material';
+import { Avatar, Box, Button, Container, Stack } from '@mui/material';
 import React, { useState } from 'react';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import LocalOfferRoundedIcon from '@mui/icons-material/LocalOfferRounded';
@@ -111,7 +110,7 @@ export default function Header({ selectedMenu }) {
                         <PhotoCameraIcon />
                     </Fab> */}
                     {
-                        MetaMaskAddress != '' && <Box sx={{ border: 'solid', borderWidth: 0.3, borderColor: 'gray', borderRadius: 1, display: 'flex', alignItems: 'center' }} pr={2} pl={2} mr={2}>
+                        MetaMaskAddress !== '' && <Box sx={{ border: 'solid', borderWidth: 0.3, borderColor: 'gray', borderRadius: 1, display: 'flex', alignItems: 'center' }} pr={2} pl={2} mr={2}>
                             <Avatar
                                 sx={{ width: 24, height: 24, marginRight: 1 }}
                                 size='sm'

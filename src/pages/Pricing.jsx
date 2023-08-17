@@ -2,7 +2,7 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { Box, Button, Container, Grid, Link, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Header from "../components/Dashboard/Header";
 import {
   calculatePriceInCrypto,
@@ -11,7 +11,6 @@ import {
   selectCurrentExchangerates,
   selectCurrentPlan,
   selectCurrentpriceInCrypto,
-  updatePlan,
   updatePlanUsingCoinpayment,
 } from "../redux/slices/pricingSlice";
 // import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
@@ -33,8 +32,7 @@ export default function Pricing() {
   const currentpriceInCrypto = useSelector(selectCurrentpriceInCrypto);
   const currentExchangerates = useSelector(selectCurrentExchangerates);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const searchParams = useSearchParams();
   const [updatingPlanTo, setupdatingPlanTo] = useState(-1);
   const [SubscriptionExpiredDialogOpen, setSubscriptionExpiredDialogOpen] = React.useState(false);
   const handleSubscriptionExpiredDialogClose = () => {
@@ -51,18 +49,20 @@ export default function Pricing() {
     if (searchParams.get("open_subscription_expired_dialog")) {
       setSubscriptionExpiredDialogOpen(true);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const payUsingStripe = () => {
-    if (currentPlan == updatingPlanTo) {
-      console.log("No need to update free plan");
-    } else {
-      dispatch(updatePlan({ targetPlan: updatingPlanTo }));
-    }
-  };
+  // const payUsingStripe = () => {
+  //   if (currentPlan == updatingPlanTo) {
+  //     console.log("No need to update free plan");
+  //   } else {
+  //     dispatch(updatePlan({ targetPlan: updatingPlanTo }));
+  //   }
+  // };
 
   const payUsingCoinpayments = () => {
-    if (currentPlan == updatingPlanTo) {
+    if (currentPlan === updatingPlanTo) {
       console.log("No need to update free plan");
     } else {
       dispatch(updatePlanUsingCoinpayment({ targetPlan: updatingPlanTo, targetCrypto: selectedCryptoCurrency }));
@@ -74,7 +74,7 @@ export default function Pricing() {
   const handleClickOpen = (updatingPlanTo) => {
     console.log(currentPlan);
     console.log(updatingPlanTo);
-    if (currentPlan != updatingPlanTo) {
+    if (currentPlan !== updatingPlanTo) {
       setOpen(true);
     }
   };
@@ -513,7 +513,7 @@ export default function Pricing() {
                       setselectedCryptoCurrency(e.target.value);
                     }}
                   >
-                    {currentExchangerates.length != 0 &&
+                    {currentExchangerates.length !== 0 &&
                       Object.keys(currentExchangerates).map((curr) => {
                         return <MenuItem value={curr}>{curr}</MenuItem>;
                       })}

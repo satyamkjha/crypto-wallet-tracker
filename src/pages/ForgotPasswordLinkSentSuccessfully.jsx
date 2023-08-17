@@ -1,9 +1,6 @@
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 export default function ForgotPasswordLinkSentSuccessfully() {
-    const navigate = useNavigate()
-
     return (
         <Grid container>
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100vh' }}>

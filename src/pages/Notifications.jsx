@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react'
 import Header from '../components/Dashboard/Header'
-import { getCurrentPlan, selectCurrentPlan, updatePlan } from '../redux/slices/pricingSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Typography, Container, Box, IconButton, Grid, Button, Fab, Stack, LinearProgress, Card, Link } from '@mui/material';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import {  useSearchParams } from 'react-router-dom';
+import { Typography, Container, Box, IconButton, Grid, Button, Fab, Stack } from '@mui/material';
 // import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 // import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import CheckIcon from '@mui/icons-material/Check';
 import AddIcon from '@mui/icons-material/Add';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import EmailIcon from '@mui/icons-material/Email';
 import CreateNotification from '../components/Notifications/CreateNotification';
 import EditNotification from '../components/Notifications/EditNotification';
 import { getNotifications, getSlackIntegration, getTelegramIntegration, selectNotifications, sendSlackCode, updateOpenCreateNotificationDialog, updateOpenEditNotificationDialog, updateSelectedNotification } from '../redux/slices/notificationSlice';
@@ -21,7 +17,7 @@ import { getPlanStats, selectPlanStats } from '../redux/slices/dashboardSlice';
 export default function Notifications() {
     const dispatch = useDispatch()
     const notifications = useSelector(selectNotifications)
-    const [searchParams, setSearchParams] = useSearchParams()
+    const searchParams = useSearchParams()
     const planStats = useSelector(selectPlanStats)
 
     useEffect(() => {
@@ -174,7 +170,7 @@ export default function Notifications() {
                                         <AddIcon sx={{ fontSize: '1.5rem' }} />
                                     </Fab>
                                     <Typography sx={{ fontWeight: 'bold' }}>Add Address For Monitoring</Typography>
-                                </Box>
+                                </Box> 
 
                             </Button>
                         </Grid>
