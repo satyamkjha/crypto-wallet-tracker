@@ -1019,7 +1019,7 @@ export default function Investigation() {
 
                     <Input
                       fullWidth
-                      value={selectedNode?.custom_note ? selectedNode?.custom_note : ""}
+                      value={selectedNodeInfo?.custom_note ? selectedNodeInfo?.custom_note : ""}
                       disableUnderline
                       multiline
                       onChange={(event) => {

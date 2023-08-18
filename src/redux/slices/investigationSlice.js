@@ -79,6 +79,7 @@ export const getNodeInfo = createAsyncThunk(
 		thunkAPI.dispatch(updateLoadingNodeInfo(false));
 
 		if (response.status === 200) {
+			console.log(response.data.data);
 			thunkAPI.dispatch(updateSelectedNodeInfo(response.data.data));
 		}
 	}
