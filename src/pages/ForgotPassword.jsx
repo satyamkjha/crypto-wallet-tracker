@@ -15,6 +15,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import axios from 'axios'
 import { backendServerBaseURL } from '../utils/backendServerBaseURL';
+import { assetsURL } from '../utils/assetsURL';
 
 export default function ForgotPassword() {
     const navigate = useNavigate()
@@ -80,7 +81,7 @@ export default function ForgotPassword() {
                                         sx={{
                                             height: 42
                                         }}
-                                        src="/static/logo.jpg"
+                                        src={`${assetsURL}logo.jpg`}
                                     />
                                 </Box>
 

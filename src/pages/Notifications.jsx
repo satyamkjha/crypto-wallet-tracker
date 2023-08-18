@@ -12,6 +12,7 @@ import EditNotification from '../components/Notifications/EditNotification';
 import { getNotifications, getSlackIntegration, getTelegramIntegration, selectNotifications, sendSlackCode, updateOpenCreateNotificationDialog, updateOpenEditNotificationDialog, updateSelectedNotification } from '../redux/slices/notificationSlice';
 import TelegramIntegrationDialog from '../components/Notifications/TelegramIntegrationDialog';
 import { getPlanStats, selectPlanStats } from '../redux/slices/dashboardSlice';
+import { assetsURL } from '../utils/assetsURL';
 
 
 export default function Notifications() {
@@ -88,7 +89,7 @@ export default function Notifications() {
                                                         maxWidth: 32,
                                                     }}
                                                     alt="ethereum"
-                                                    src='static/email.png'
+                                                    src={`${assetsURL}email.png`}
                                                 />
                                             }
 
@@ -103,7 +104,7 @@ export default function Notifications() {
                                                         maxWidth: 30,
                                                     }}
                                                     alt="ethereum"
-                                                    src='static/slack.png'
+                                                    src={`${assetsURL}slack.png`}
                                                 />
                                             }
 
@@ -118,7 +119,7 @@ export default function Notifications() {
                                                         maxWidth: 32,
                                                     }}
                                                     alt="ethereum"
-                                                    src='static/Telegram.png'
+                                                    src={`${assetsURL}Telegram.png`}
                                                 />
                                             }
                                         </Stack>

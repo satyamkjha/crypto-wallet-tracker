@@ -1,5 +1,6 @@
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { assetsURL } from '../utils/assetsURL';
 
 export default function PasswordChangedSuccessfully() {
     const navigate = useNavigate()
@@ -21,7 +22,7 @@ export default function PasswordChangedSuccessfully() {
                                         sx={{
                                             height: 42
                                         }}
-                                        src="/static/logo.jpg"
+                                        src={`${assetsURL}logo.jpg`}
                                     />
                                 </Box>
 
@@ -58,7 +59,7 @@ export default function PasswordChangedSuccessfully() {
                                 marginBottom: 2
                             }}
                             alt="ethereum"
-                            src='/static/payment-success.png'
+                            src={`${assetsURL}payment-success.png`}
                         />
 
                         <Typography variant='h2' sx={{ marginBottom: 2 }} textAlign='center'>Password Changed <br />Successfully</Typography>

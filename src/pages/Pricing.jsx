@@ -26,6 +26,7 @@ import Select from "@mui/material/Select";
 import { useState } from "react";
 import { getPlanStats, selectPlanStats } from "../redux/slices/dashboardSlice";
 import { formatDate } from "../utils/formatTime";
+import { assetsURL } from "../utils/assetsURL";
 
 export default function Pricing() {
   const currentPlan = useSelector(selectCurrentPlan);
@@ -401,7 +402,7 @@ export default function Pricing() {
                     width: "100%",
                   }}
                   alt="ethereum"
-                  src="static/stripe.png"
+                  src="${assetsURL}stripe.png"
                 />
 
                 <Button
@@ -435,7 +436,7 @@ export default function Pricing() {
                     width: "100%",
                   }}
                   alt="ethereum"
-                  src="static/coinpayments.svg"
+                  src={`${assetsURL}coinpayments.svg`}
                 />
 
                 <Button
@@ -493,7 +494,7 @@ export default function Pricing() {
                     width: "100%",
                   }}
                   alt="ethereum"
-                  src="static/coinpayments.svg"
+                  src={`${assetsURL}coinpayments.svg`}
                   mb={3}
                 />
 

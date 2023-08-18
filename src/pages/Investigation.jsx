@@ -57,6 +57,7 @@ import { chains } from "../utils/supportedChains";
 import { v4 as uuidv4 } from "uuid";
 import { CirclePicker } from "react-color";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { assetsURL } from "../utils/assetsURL";
 
 export default function Investigation() {
   const params = useParams();
@@ -316,7 +317,7 @@ export default function Investigation() {
     "crypto-exchange": {
       borderWidth: 0,
       shape: "circularImage",
-      image: "/static/crypto-exchange/crypto-exchange.jpg",
+      image: `${assetsURL}crypto-exchange/crypto-exchange.jpg`,
       color: {
         background: "#607d8b",
         highlight: "#263238",

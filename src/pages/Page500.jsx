@@ -1,5 +1,6 @@
 import { Box, Button, Container, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import { assetsURL } from '../utils/assetsURL';
 
 
 
@@ -16,7 +17,7 @@ export default function Page404() {
             sx={{
               height: 50
             }}
-            src="/static/logo.jpg"
+            src={`${assetsURL}logo.jpg`}
           />
         </Box>
 

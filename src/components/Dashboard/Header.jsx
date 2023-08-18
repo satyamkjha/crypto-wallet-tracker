@@ -6,6 +6,7 @@ import NotificationsActiveRoundedIcon from '@mui/icons-material/NotificationsAct
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
+import { assetsURL } from '../../utils/assetsURL';
 
 export default function Header({ selectedMenu }) {
     const navigate = useNavigate()
@@ -17,6 +18,8 @@ export default function Header({ selectedMenu }) {
         localStorage.removeItem("user");
         window.open('/login', '_self')
     };
+
+    console.log(assetsURL);
 
     useEffect(() => {
         try {
@@ -44,7 +47,7 @@ export default function Header({ selectedMenu }) {
                         sx={{
                             height: 42
                         }}
-                        src="/static/logo.jpg"
+                        src={`${assetsURL}logo.jpg`}
                     />
                 </Box>
 

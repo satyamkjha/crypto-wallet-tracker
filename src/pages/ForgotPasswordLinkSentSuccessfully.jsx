@@ -1,4 +1,5 @@
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import { assetsURL } from '../utils/assetsURL';
 
 export default function ForgotPasswordLinkSentSuccessfully() {
     return (
@@ -18,7 +19,7 @@ export default function ForgotPasswordLinkSentSuccessfully() {
                                         sx={{
                                             height: 42
                                         }}
-                                        src="/static/logo.jpg"
+                                        src={`${assetsURL}logo.jpg`}
                                     />
                                 </Box>
 
@@ -55,7 +56,7 @@ export default function ForgotPasswordLinkSentSuccessfully() {
                                 marginBottom: 2
                             }}
                             alt="ethereum"
-                            src='/static/payment-success.png'
+                            src={`${assetsURL}payment-success.png`}
                         />
 
                         <Typography variant='h2' sx={{ marginBottom: 2 }} textAlign='center'>Password Reset Link <br />Sent Successfully</Typography>

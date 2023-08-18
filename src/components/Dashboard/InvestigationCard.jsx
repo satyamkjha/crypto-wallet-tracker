@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { deleteInvestigation } from '../../redux/slices/dashboardSlice';
 import { chains } from '../../utils/supportedChains';
+import { assetsURL } from '../../utils/assetsURL';
 
 
 function InvestigationCard({ investigation }) {
@@ -43,7 +44,7 @@ function InvestigationCard({ investigation }) {
                                 maxWidth: 24,
                             }}
                             alt="ethereum"
-                            src={chains.filter(chain => chain.name == investigation.chain)[0].logo}
+                            src={`${assetsURL}${chains.filter(chain => chain.name == investigation.chain)[0].logo}`}
                         />
                     </Box>
 

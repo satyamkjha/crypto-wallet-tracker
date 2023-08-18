@@ -4,6 +4,7 @@ import {
     Stack, TextField, Typography
 } from '@mui/material';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import { assetsURL } from '../../utils/assetsURL';
 
 
 export default function LandingHeader() {
@@ -22,7 +23,7 @@ export default function LandingHeader() {
                                 sx={{
                                     height: 42
                                 }}
-                                src="/static/logo.jpg"
+                                src={`${assetsURL}logo.jpg`}
                             />
                         </Box>
 

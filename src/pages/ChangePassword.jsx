@@ -17,6 +17,7 @@ import KeyIcon from '@mui/icons-material/Key';
 import { useState } from 'react';
 import axios from 'axios'
 import { backendServerBaseURL } from '../utils/backendServerBaseURL';
+import { assetsURL } from '../utils/assetsURL';
 
 export default function ChangePassword() {
     const params = useParams()
@@ -95,7 +96,7 @@ export default function ChangePassword() {
                                         sx={{
                                             height: 42
                                         }}
-                                        src="/static/logo.jpg"
+                                        src={`${assetsURL}logo.jpg`}
                                     />
                                 </Box>
 

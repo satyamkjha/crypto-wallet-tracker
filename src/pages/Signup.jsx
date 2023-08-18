@@ -31,6 +31,7 @@ import axios from 'axios';
 import { backendServerBaseURL } from '../utils/backendServerBaseURL';
 import { useMetaMask } from 'metamask-react';
 import { googleClientId } from '../utils/constants';
+import { assetsURL } from '../utils/assetsURL';
 
 export default function Signup() {
 	const [showPassword, setShowPassword] = useState(false);
@@ -243,7 +244,7 @@ export default function Signup() {
 									sx={{
 										height: 42,
 									}}
-									src='/static/logo.jpg'
+									src={`${assetsURL}logo.jpg`}
 								/>
 							</Box>
 						</Container>
@@ -344,7 +345,7 @@ export default function Signup() {
 									display: { xs: 'block', md: 'none' },
 									height: 42,
 								}}
-								src='/static/logo.jpg'
+								src={`${assetsURL}logo.jpg`}
 							/>
 
 							<Box>

@@ -30,6 +30,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import MemoryIcon from "@mui/icons-material/Memory";
 import { getPlanStats, selectPlanStats } from '../../redux/slices/dashboardSlice';
+import { assetsURL } from "../../utils/assetsURL";
 
 export default function CreateNotification() {
   const dispatch = useDispatch();
@@ -228,7 +229,7 @@ export default function CreateNotification() {
                       maxWidth: 28,
                     }}
                     alt="ethereum"
-                    src="static/email.png"
+                    src={`${assetsURL}email.png`}
                   />
                 </Fab>
 
@@ -284,8 +285,7 @@ export default function CreateNotification() {
                       maxWidth: 28,
                     }}
                     alt="ethereum"
-                    src="static/slack.png"
-                  />
+                    src={`${assetsURL}slack.png`}   />
                 </Fab>
 
                 {slackAuthorized && (
@@ -362,7 +362,7 @@ export default function CreateNotification() {
                       maxWidth: 28,
                     }}
                     alt="ethereum"
-                    src="static/Telegram.png"
+                    src={`${assetsURL}Telegram.png`}
                   />
                 </Fab>
 
