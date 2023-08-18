@@ -68,7 +68,6 @@ export default function Signup() {
 					password: values['password'],
 				})
 				.then((response) => {
-					console.log(response);
 					if (response.status === 200 && response.data.status === 'ok') {
 						localStorage.setItem(
 							'accessToken',
@@ -92,7 +91,6 @@ export default function Signup() {
 				})
 				.catch((error) => {
 					try {
-						console.log(error);
 						if (error.response.status === 400) {
 							setErrors({ afterSubmit: error.response.data.message });
 						}
@@ -123,7 +121,6 @@ export default function Signup() {
 				credentialsJWT: credentialsJWT,
 			})
 			.then((response) => {
-				console.log(response);
 				if (response.status === 200 && response.data.status === 'ok') {
 					localStorage.setItem('accessToken', response.data.data.tokens.access);
 					localStorage.setItem(
@@ -144,7 +141,6 @@ export default function Signup() {
 			})
 			.catch((error) => {
 				try {
-					console.log(error);
 					if (error.response.status === 400) {
 						// setErrors({ afterSubmit: error.response.data.message });
 					}
@@ -156,8 +152,6 @@ export default function Signup() {
 
 	window.onload = function () {
 		window.setTimeout(() => {
-			console.log('AAAAAAAA');
-			console.log(ref.current.offsetWidth);
 			window.google.accounts.id.initialize({
 				client_id: googleClientId,
 				callback: googleSignupSuccess,
@@ -185,7 +179,6 @@ export default function Signup() {
 				chainId: chainId,
 			})
 			.then((response) => {
-				console.log(response);
 				if (response.status === 200 && response.data.status === 'ok') {
 					localStorage.setItem('accessToken', response.data.data.tokens.access);
 					localStorage.setItem(
@@ -206,7 +199,6 @@ export default function Signup() {
 			})
 			.catch((error) => {
 				try {
-					console.log(error);
 					if (error.response.status === 400) {
 						// setErrors({ afterSubmit: error.response.data.message });
 					}

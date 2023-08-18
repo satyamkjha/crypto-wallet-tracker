@@ -60,7 +60,6 @@ export default function Login() {
           password: values["password"],
         })
         .then((response) => {
-          console.log(response.data.data);
           if (response.status === 200 && response.data.status === "ok" && response.data.message === "redirect to 2 step verification") {
             navigate(`/2-step-verification/${values["email"]}`);
           }
@@ -101,7 +100,6 @@ export default function Login() {
         credentialsJWT: credentialsJWT,
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200 && response.data.status === "ok") {
           localStorage.setItem("accessToken", response.data.data.tokens.access);
           localStorage.setItem("refreshToken", response.data.data.tokens.refresh);
@@ -128,7 +126,6 @@ export default function Login() {
 
   window.onload = function () {
     window.setTimeout(() => {
-      console.log(ref.current.offsetWidth);
       window.google.accounts.id.initialize({
         client_id: googleClientId,
         callback: googleSignupSuccess,
@@ -174,7 +171,6 @@ export default function Login() {
         account: account,
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200 && response.data.status === "ok") {
           localStorage.setItem("accessToken", response.data.data.tokens.access);
           localStorage.setItem("refreshToken", response.data.data.tokens.refresh);

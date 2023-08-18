@@ -26,8 +26,6 @@ export default function Notifications() {
         dispatch(getTelegramIntegration())
         dispatch(getPlanStats())
 
-        console.log('AAAAAAAAAAAAA')
-        console.log(searchParams.get('code'))
 
         if (searchParams.get('code')) {
             let code = searchParams.get('code')

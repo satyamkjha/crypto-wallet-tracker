@@ -44,7 +44,6 @@ export default function TwoStepVerification() {
                 }
             ).then(
                 (response) => {
-                    console.log(response.data.data)
                     if (response.status === 200 && response.data.status === 'ok') {
                         localStorage.setItem('accessToken', response.data.data.tokens.access)
                         localStorage.setItem('refreshToken', response.data.data.tokens.refresh)
@@ -59,7 +58,6 @@ export default function TwoStepVerification() {
                 }
             ).catch((error) => {
                 try {
-                    console.log(error)
                     if (error.response.status === 400) {
                         setErrors({ afterSubmit: error.response.data.message });
                     }

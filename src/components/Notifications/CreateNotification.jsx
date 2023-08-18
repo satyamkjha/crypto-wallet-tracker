@@ -59,7 +59,6 @@ export default function CreateNotification() {
     validationSchema: Schema,
     onSubmit: async (values, { setErrors, setSubmitting, isSubmitting }) => {
       setSubmitting(true);
-      console.log(values);
       let valid = true;
 
       let data = {

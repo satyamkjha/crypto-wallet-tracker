@@ -39,7 +39,6 @@ export default function ForgotPassword() {
             ).then(
                 (response) => {
                     setSubmitting(false);
-                    console.log(response.data.data)
                     if (response.status === 200 && response.data.status === 'ok') {
                         navigate(`/forgot-password-link-sent-successfully`)
                     }

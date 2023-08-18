@@ -79,7 +79,6 @@ export const getNodeInfo = createAsyncThunk(
 		thunkAPI.dispatch(updateLoadingNodeInfo(false));
 
 		if (response.status === 200) {
-			console.log(response.data.data);
 			thunkAPI.dispatch(updateSelectedNodeInfo(response.data.data));
 		}
 	}
@@ -197,7 +196,6 @@ export const uploadNetworkImage = createAsyncThunk(
 
 		await payload.canvas.toBlob(async (blob) => {
 			payload.setsharingImageLoading(true);
-			console.log(blob);
 			let data = new FormData();
 			data.append('image', blob);
 

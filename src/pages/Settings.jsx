@@ -58,7 +58,6 @@ export default function Settings() {
     validationSchema: RegisterSchema,
     onSubmit: async (values, { setErrors, setSubmitting, resetForm }) => {
       setSubmitting(true);
-      console.log(values);
       await dispatch(updateUserEmail({ email: values.email, newEmail: values.newEmail, reset: resetForm, setErrors }));
       setSubmitting(false);
     },
@@ -82,10 +81,8 @@ export default function Settings() {
     },
     validationSchema: RegisterSchema2,
     onSubmit: async (values, { setErrors, setSubmitting, resetForm }) => {
-      console.log(values);
       if (values.newPassword === values.confirmNewPassword) {
         setSubmitting(true);
-        console.log(values);
         await dispatch(updateUserPassword({ password: values.password, newPassword: values.newPassword, reset: resetForm, setErrors }));
         setSubmitting(false);
       } else {

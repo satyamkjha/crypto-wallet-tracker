@@ -72,8 +72,6 @@ export default function Pricing() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = (updatingPlanTo) => {
-    console.log(currentPlan);
-    console.log(updatingPlanTo);
     if (currentPlan !== updatingPlanTo) {
       setOpen(true);
     }

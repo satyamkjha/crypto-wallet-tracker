@@ -9,7 +9,6 @@ export default function ErrorHandler({ children }) {
 			},
 
 			(error) => {
-				console.log(error.toJSON());
 				console.log(error.response);
 
 				if (error.toJSON().message === 'Network Error') {

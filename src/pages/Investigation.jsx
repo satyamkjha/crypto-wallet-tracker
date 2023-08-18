@@ -411,8 +411,6 @@ export default function Investigation() {
   useEffect(() => {
     var container = document.getElementById("mynetwork");
 
-    console.log(container);
-    console.log("1");
     if (container) {
       VISNodesDataset.current = getVISNodesDataset(nodes);
       VISEdgesDataset.current = getVISRelationshipsDataset(relationships);
@@ -423,7 +421,6 @@ export default function Investigation() {
         edges: VISEdgesDataset.current,
       };
       const netWorkHeight = document.documentElement.clientHeight - 210;
-      console.log(netWorkHeight);
       var options = {
         clickToUse: true,
         height: netWorkHeight + "px",
@@ -452,8 +449,7 @@ export default function Investigation() {
       network.current = new vis.Network(container, data, options);
 
       network.current.on("doubleClick", function (properties) {
-        console.log(properties);
-        console.log("double clicked");
+
 
         dispatch(updateSelectedEdge(null));
 
@@ -463,7 +459,6 @@ export default function Investigation() {
 
         if (nodeids.length > 0) {
           var clickedNodes = VISNodesDataset.current.get(nodeids);
-          console.log("clicked nodes:", clickedNodes);
           dispatch(
             getInvestigation({
               address: clickedNodes[0].address,
@@ -475,7 +470,6 @@ export default function Investigation() {
           );
         } else {
           var clickedEdges = VISEdgesDataset.current.get(edgeids);
-          console.log("clicked edge:", clickedEdges);
         }
       });
 
@@ -487,15 +481,13 @@ export default function Investigation() {
               dispatch(updateSelectedNode(null));
               dispatch(updateSelectedNodeInfo(null));
               dispatch(updateRecentTransactions([]));
-              console.log(properties);
-              console.log("single click");
+             
 
               var nodeids = properties.nodes;
               var edgeids = properties.edges;
 
               if (nodeids.length > 0) {
                 var clickedNodes = VISNodesDataset.current.get(nodeids);
-                console.log("clicked nodes:", clickedNodes);
                 dispatch(updateSelectedNode(clickedNodes[0]));
                 dispatch(getNodeInfo({ id: params.id, uid: clickedNodes[0].uid }));
                 dispatch(getRecentTransactions({ id: params.id, uid: clickedNodes[0].uid }));
@@ -510,7 +502,6 @@ export default function Investigation() {
                 // Added connceted node ids to nodes in focus
                 var connectedEdges = VISEdgesDataset.current.get(edgeids);
                 connectedEdges.map((edge) => {
-                  console.log(edge);
                   tempNodesInFocus.push(edge.from);
                   tempNodesInFocus.push(edge.to);
                 });
@@ -519,7 +510,6 @@ export default function Investigation() {
                 setNodeIdsInFocus(tempNodesInFocus);
               } else {
                 var clickedEdges = VISEdgesDataset.current.get(edgeids);
-                console.log("clicked edge:", clickedEdges);
                 dispatch(updateSelectedEdge(clickedEdges[0]));
               }
 
@@ -993,7 +983,6 @@ export default function Investigation() {
                       color={selectedNode.group}
                       circleSize={24}
                       onChangeComplete={(e) => {
-                        console.log(selectedNode);
                         dispatch(
                           updateNodeColor({
                             id: params.id,
@@ -1023,7 +1012,6 @@ export default function Investigation() {
                       disableUnderline
                       multiline
                       onChange={(event) => {
-                        console.log(selectedNode);
                         dispatch(
                           updateCustomNotes({
                             id: params.id,
