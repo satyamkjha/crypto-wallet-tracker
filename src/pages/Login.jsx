@@ -220,17 +220,18 @@ export default function Login() {
       <Box sx={{ display: "flex", flexDirection: "column", width: "100%", height: "100vh" }}>
         <LandingHeader />
 
-        <Box display="flex" justifyContent="center" alignItems="center" minWidth="100%" flexGrow="1">
-          <Grid item xs={11} md={5}>
+        <Box display="flex" justifyContent="center" alignItems="center"  flexGrow="1" >
+          <Grid item xs={11} md={8} sx={{ display: "flex", flexDirection: "column", alignItems: 'center' }} >
             <FormikProvider value={formik}>
               <Box
                 sx={{
                   backgroundColor: "background.neutral",
                   paddingTop: 4,
                   paddingBottom: 4,
-                  paddingRight: { md: 10, xs: 3 },
-                  paddingLeft: { md: 10, xs: 3 },
+                  paddingRight: { lg: 10, xs: 3 },
+                  paddingLeft: { lg: 10, xs: 3 },
                   borderRadius: 1,
+                  maxWidth: '1200px'
                 }}
               >
                 <Typography variant="h3" textAlign="center" pb={2}>

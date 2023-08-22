@@ -367,16 +367,16 @@ export default function Signup() {
 
 					<Container
 						maxWidth='lg'
-						sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+						sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', flexGrow: 1 }}>
 						<FormikProvider value={formik}>
 							<Box
 								sx={{
 									paddingTop: 3,
 									paddingBottom: 3,
-									paddingRight: { xs: 2, md: 12 },
-									paddingLeft: { xs: 2, md: 12 },
+									paddingRight: { xs: 2, md: 4, xl: 8, },
+									paddingLeft: { xs: 2, md: 4, xl: 8 },
 									borderRadius: 1,
-									width: { md: '70%', xs: '100%' },
+									width: { lg: '80%', md: '100%', sm: '80%', xs: '90%' },
 								}}>
 								<Typography variant='h3' pb={2}>
 									Join CredShields

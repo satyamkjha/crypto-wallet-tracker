@@ -18,7 +18,7 @@ import { assetsURL } from '../utils/assetsURL';
 export default function Notifications() {
     const dispatch = useDispatch()
     const notifications = useSelector(selectNotifications)
-    const searchParams = useSearchParams()
+    const [searchParams] = useSearchParams()
     const planStats = useSelector(selectPlanStats)
 
     useEffect(() => {
@@ -26,8 +26,6 @@ export default function Notifications() {
         dispatch(getSlackIntegration())
         dispatch(getTelegramIntegration())
         dispatch(getPlanStats())
-
-
         if (searchParams.get('code')) {
             let code = searchParams.get('code')
             dispatch(sendSlackCode({ code: code }))
@@ -38,7 +36,7 @@ export default function Notifications() {
         <>
             <Header selectedMenu={2} />
 
-            <Container maxWidth='80vw' sx={{ marginTop: 5, maxWidth: '80vw' }}>
+            <Container maxWidth='95vw' sx={{ marginTop: 5, maxWidth: '1800px', width: '95vw' }}>
                 <Box pb={3} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Typography variant='h5'>Enabled Notifications</Typography>
 
@@ -49,7 +47,7 @@ export default function Notifications() {
                 <Grid container spacing={2}>
                     {
                         notifications.map((notification, index) => {
-                            return <Grid item md={3} xs={12}>
+                            return <Grid item sm={6} md={4} lg={3} xs={12}>
                                 <Box
                                     p={3}
                                     pb={2}
@@ -133,7 +131,7 @@ export default function Notifications() {
                     }
 
                     {
-                        planStats?.remaining_notifications > 0 && <Grid item md={3} xs={12}>
+                        planStats?.remaining_notifications > 0 && <Grid item sm={6} md={4} lg={3} xs={12}>
                             <Button
                                 p={2}
                                 onClick={() => { dispatch(updateOpenCreateNotificationDialog(true)) }}

@@ -15,7 +15,7 @@ function InvestigationCard({ investigation }) {
     const [deleting, setdeleting] = useState(false)
 
     return (
-        <Grid item md={4} xs={12}>
+        <Grid item lg={4} md={6} xs={12}>
             <Box
                 p={3}
                 pb={2}

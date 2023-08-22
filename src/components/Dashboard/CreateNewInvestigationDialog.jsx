@@ -21,6 +21,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { chains } from '../../utils/supportedChains';
 import MemoryIcon from "@mui/icons-material/Memory";
+import { assetsURL } from '../../utils/assetsURL';
 
 export default function CreateNewInvestigationDialog() {
     const dispatch = useDispatch()
@@ -73,13 +74,15 @@ export default function CreateNewInvestigationDialog() {
                             Enter address below to start investigation
                         </DialogContentText>
 
-                        <Stack spacing={1}>
+                        <Stack spacing={1} marginTop={2}>
                             {errors.afterSubmit && <Alert severity="error">{errors.afterSubmit}</Alert>}
 
-                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <Box sx={{ flexGrow: 1, marginRight: 1 }}>
+                            <Box width={'100%'} sx={{ display: 'flex', flexDirection: {xs: 'column', md: 'row'}, alignItems: 'center' }}>
+                            
                                     <TextField
-                                        fullWidth
+                                        sx={{
+                                            width: {xs: '100%', md: '60%'}, marginRight: {xs: 0, md: 1} , marginBottom: {xs: 1, md: 0}
+                                        }}
                                         placeholder='Address'
                                         {...getFieldProps('address')}
                                         error={Boolean(touched.address && errors.address)}
@@ -88,12 +91,12 @@ export default function CreateNewInvestigationDialog() {
                                             startAdornment: <InputAdornment position="start"><MemoryIcon sx={{ opacity: 0.5 }} /></InputAdornment>,
                                         }}
                                     />
-                                </Box>
+                               
 
 
                                 <Select
                                     value={formik.values.chain}
-                                    sx={{ minWidth: '14rem' }}
+                                    sx={{ width: {xs: '100%', md: '40%'},  minWidth: '14rem' }}
                                     onChange={(e) => { setFieldValue('chain', e.target.value) }}
                                 >
                                     {
@@ -110,7 +113,7 @@ export default function CreateNewInvestigationDialog() {
                                                             maxWidth: 24,
                                                         }}
                                                         alt="ethereum"
-                                                        src={chainData.logo}
+                                                        src={`${assetsURL}${chainData.logo}`}
                                                     />
                                                     {chainData.name}
                                                 </Box>

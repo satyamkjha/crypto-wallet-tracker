@@ -1,9 +1,6 @@
 import { Alert, Box, InputAdornment, Stack, TextField, Typography, IconButton, Fab } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
@@ -19,14 +16,9 @@ import {
   updateopenTelegramNotificationsDialog,
 } from "../../redux/slices/notificationSlice";
 import { Form, FormikProvider, useFormik } from "formik";
-import EmailIcon from "@mui/icons-material/Email";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { useNavigate } from "react-router-dom";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { chains } from "../../utils/supportedChains";
 import CancelIcon from "@mui/icons-material/Cancel";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import MemoryIcon from "@mui/icons-material/Memory";
@@ -36,7 +28,7 @@ import { assetsURL } from "../../utils/assetsURL";
 export default function EditNotification() {
   const dispatch = useDispatch();
   const selectedNotification = useSelector(selectSelectedNotification);
-  const navigate = useNavigate();
+  
   const slackAuthorized = useSelector(selectSlackAuthorized);
   const [emailChannelEnabled, setEmailChannelEnabled] = useState(true);
   const [slackChannelEnabled, setSlackChannelEnabled] = useState(true);
@@ -231,8 +223,10 @@ export default function EditNotification() {
                     backgroundColor: "white",
                     border: "solid",
                     borderWidth: 1,
-                    borderRadius: 1,
                     borderColor: "#d6d6d6",
+                    display: {
+                      xs: 'none', md: 'block'
+                    }
                   }}
                 >
                   <Box
@@ -287,7 +281,6 @@ export default function EditNotification() {
                     backgroundColor: "white",
                     border: "solid",
                     borderWidth: 1,
-                    borderRadius: 1,
                     borderColor: "#d6d6d6",
                   }}
                 >
@@ -365,7 +358,6 @@ export default function EditNotification() {
                     backgroundColor: "white",
                     border: "solid",
                     borderWidth: 1,
-                    borderRadius: 1,
                     borderColor: "#d6d6d6",
                   }}
                 >
@@ -423,7 +415,7 @@ export default function EditNotification() {
           </Stack>
 
           <Box p={3} sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <Box>
+            <Box width={'50%'}>
               Notifications Remaining <span style={{ fontWeight: "bold" }}>{planStats?.remaining_notifications}</span>
             </Box>
 

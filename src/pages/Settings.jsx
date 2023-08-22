@@ -95,7 +95,7 @@ export default function Settings() {
     <>
       <Header selectedMenu={3} />
 
-      <Container maxWidth="80vw" sx={{ marginTop: 5, maxWidth: "80vw" }}>
+      <Container maxWidth="80vw" sx={{ marginTop: 5, maxWidth: '1800px', width: '95vw' }}>
         <Grid container spacing={3}>
           {/* Reset Email Address */}
           <Grid item md={6} xs={12}>

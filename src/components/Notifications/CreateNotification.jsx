@@ -217,6 +217,9 @@ export default function CreateNotification() {
                     borderWidth: 1,
                     borderRadius: 1,
                     borderColor: "#d6d6d6",
+                    display: {
+                      xs: 'none', md: 'block'
+                    }
                   }}
                 >
                   <Box
@@ -227,6 +230,7 @@ export default function CreateNotification() {
                       width: 28,
                       maxHeight: 28,
                       maxWidth: 28,
+                     
                     }}
                     alt="ethereum"
                     src={`${assetsURL}email.png`}
@@ -405,8 +409,8 @@ export default function CreateNotification() {
             )}
           </Stack>
 
-          <Box p={3} sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <Box>
+          <Box p={3} sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: '100%' }}>
+            <Box width={'50%'}>
               Notifications Remaining <span style={{ fontWeight: "bold" }}>{planStats?.remaining_notifications}</span>
             </Box>
 

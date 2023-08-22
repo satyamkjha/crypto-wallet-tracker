@@ -106,7 +106,7 @@ export default function ForgotPassword() {
                     minWidth='100%'
                     flexGrow='1'
                 >
-                    <Grid item xs={11} md={4}>
+                    <Grid item xs={11} sm={9} md={6} lg={5}>
                         <FormikProvider value={formik}>
                             <Box sx={{ backgroundColor: 'background.neutral', paddingTop: 5, paddingBottom: 5, paddingRight: { md: 8, xs: 3 }, paddingLeft: { md: 8, xs: 3 }, borderRadius: 1 }}>
                                 <Typography variant="h2" textAlign='center' pb={1}>

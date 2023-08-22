@@ -85,7 +85,10 @@ export default function TwoStepVerification() {
                     <Grid
                         p={4}
                         item
-                        xs={4}
+                        xs={10}
+                        sm={8}
+                        md={6}
+                        lg={4}
                         sx={{
                             border: 'solid',
                             borderWidth: 1,

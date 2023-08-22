@@ -33,7 +33,7 @@ export default function Pricing() {
   const currentpriceInCrypto = useSelector(selectCurrentpriceInCrypto);
   const currentExchangerates = useSelector(selectCurrentExchangerates);
   const dispatch = useDispatch();
-  const searchParams = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [updatingPlanTo, setupdatingPlanTo] = useState(-1);
   const [SubscriptionExpiredDialogOpen, setSubscriptionExpiredDialogOpen] = React.useState(false);
   const handleSubscriptionExpiredDialogClose = () => {
@@ -98,7 +98,7 @@ export default function Pricing() {
     <>
       <Header selectedMenu={1} />
 
-      <Container maxWidth="80vw" sx={{ marginTop: 5, maxWidth: "80vw" }}>
+      <Container maxWidth={'80vw'}  sx={{ marginTop: 5, maxWidth: '1800px', width: '95vw' }}>
         <Box pb={3} sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <Typography variant="h6">Our Pricing</Typography>
 
@@ -112,9 +112,11 @@ export default function Pricing() {
           </Typography>
         </Box>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={2} direction="row"
+  justifyContent="center"
+  alignItems="center">
           {/* Free plan */}
-          <Grid item md={4} xs={12}>
+          <Grid item lg={4} md={6} sm={6} xs={12}>
             <Stack
               spacing={1}
               p={3}
@@ -187,7 +189,7 @@ export default function Pricing() {
           </Grid>
 
           {/* Beginner Plan */}
-          <Grid item md={4} xs={12}>
+          <Grid item lg={4} md={6} sm={6} xs={12}>
             <Stack
               spacing={1}
               p={3}
@@ -261,7 +263,7 @@ export default function Pricing() {
           </Grid>
 
           {/* Enterprise Plan */}
-          <Grid item md={4} xs={12}>
+          <Grid item lg={4} md={6} sm={6} xs={12}>
             <Stack
               spacing={1}
               p={3}
