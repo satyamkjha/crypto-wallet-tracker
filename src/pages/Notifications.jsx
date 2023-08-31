@@ -1,27 +1,24 @@
 import React, { useEffect } from 'react'
 import Header from '../components/Dashboard/Header'
-import { getCurrentPlan, selectCurrentPlan, updatePlan } from '../redux/slices/pricingSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Typography, Container, Box, IconButton, Grid, Button, Fab, Stack, LinearProgress, Card, Link } from '@mui/material';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import {  useSearchParams } from 'react-router-dom';
+import { Typography, Container, Box, IconButton, Grid, Button, Fab, Stack } from '@mui/material';
 // import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 // import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import CheckIcon from '@mui/icons-material/Check';
 import AddIcon from '@mui/icons-material/Add';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import EmailIcon from '@mui/icons-material/Email';
 import CreateNotification from '../components/Notifications/CreateNotification';
 import EditNotification from '../components/Notifications/EditNotification';
 import { getNotifications, getSlackIntegration, getTelegramIntegration, selectNotifications, sendSlackCode, updateOpenCreateNotificationDialog, updateOpenEditNotificationDialog, updateSelectedNotification } from '../redux/slices/notificationSlice';
 import TelegramIntegrationDialog from '../components/Notifications/TelegramIntegrationDialog';
 import { getPlanStats, selectPlanStats } from '../redux/slices/dashboardSlice';
+import { assetsURL } from '../utils/assetsURL';
 
 
 export default function Notifications() {
     const dispatch = useDispatch()
     const notifications = useSelector(selectNotifications)
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()
     const planStats = useSelector(selectPlanStats)
 
     useEffect(() => {
@@ -29,10 +26,6 @@ export default function Notifications() {
         dispatch(getSlackIntegration())
         dispatch(getTelegramIntegration())
         dispatch(getPlanStats())
-
-        console.log('AAAAAAAAAAAAA')
-        console.log(searchParams.get('code'))
-
         if (searchParams.get('code')) {
             let code = searchParams.get('code')
             dispatch(sendSlackCode({ code: code }))
@@ -43,18 +36,18 @@ export default function Notifications() {
         <>
             <Header selectedMenu={2} />
 
-            <Container maxWidth='80vw' sx={{ marginTop: 5, maxWidth: '80vw' }}>
+            <Container maxWidth='95vw' sx={{ marginTop: 5, maxWidth: '1800px', width: '95vw' }}>
                 <Box pb={3} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Typography variant='h5'>Enabled Notifications</Typography>
 
-                    <Typography variant='subtitle1' color='text.secondary'>Notifications Remaining : <span style={{ color: 'black', fontWeight: 'bold' }}>{planStats?.remaining_notifications}</span>
+                    <Typography variant='subtitle1' color='text.secondary'>Notifications Remaining : <span style={{ color: 'black', fontWeight: 'bold' }}>{planStats.remaining_notifications}</span>
                     </Typography>
                 </Box>
 
                 <Grid container spacing={2}>
                     {
                         notifications.map((notification, index) => {
-                            return <Grid item md={3} xs={12}>
+                            return <Grid item sm={6} md={4} lg={3} xs={12}>
                                 <Box
                                     p={3}
                                     pb={2}
@@ -94,7 +87,7 @@ export default function Notifications() {
                                                         maxWidth: 32,
                                                     }}
                                                     alt="ethereum"
-                                                    src='static/email.png'
+                                                    src={`${assetsURL}email.png`}
                                                 />
                                             }
 
@@ -109,7 +102,7 @@ export default function Notifications() {
                                                         maxWidth: 30,
                                                     }}
                                                     alt="ethereum"
-                                                    src='static/slack.png'
+                                                    src={`${assetsURL}slack.png`}
                                                 />
                                             }
 
@@ -124,7 +117,7 @@ export default function Notifications() {
                                                         maxWidth: 32,
                                                     }}
                                                     alt="ethereum"
-                                                    src='static/Telegram.png'
+                                                    src={`${assetsURL}Telegram.png`}
                                                 />
                                             }
                                         </Stack>
@@ -138,7 +131,7 @@ export default function Notifications() {
                     }
 
                     {
-                        planStats?.remaining_notifications > 0 && <Grid item md={3} xs={12}>
+                        planStats?.remaining_notifications > 0 && <Grid item sm={6} md={4} lg={3} xs={12}>
                             <Button
                                 p={2}
                                 onClick={() => { dispatch(updateOpenCreateNotificationDialog(true)) }}
@@ -174,7 +167,7 @@ export default function Notifications() {
                                         <AddIcon sx={{ fontSize: '1.5rem' }} />
                                     </Fab>
                                     <Typography sx={{ fontWeight: 'bold' }}>Add Address For Monitoring</Typography>
-                                </Box>
+                                </Box> 
 
                             </Button>
                         </Grid>

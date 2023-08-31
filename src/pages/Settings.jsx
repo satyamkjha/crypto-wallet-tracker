@@ -1,27 +1,22 @@
 import {
   Alert,
-  Avatar,
   Box,
   Button,
   Checkbox,
-  Divider,
   FormControlLabel,
   Grid,
-  IconButton,
   InputAdornment,
   Stack,
   TextField,
   Typography,
-  Link,
   Container,
 } from "@mui/material";
 import { Form, FormikProvider, useFormik } from "formik";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Dashboard/Header";
 import { getUserInfo, selectUserInfo, updateUserEmail, updateUserPassword } from "../redux/slices/settingSlice";
 import EmailIcon from "@mui/icons-material/Email";
-import GoogleIcon from "@mui/icons-material/Google";
 import { LoadingButton } from "@mui/lab";
 import * as Yup from "yup";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
@@ -31,8 +26,21 @@ export default function Settings() {
   const userInfo = useSelector(selectUserInfo);
   const dispatch = useDispatch();
 
+  const [MetaMaskAddress, setMetaMaskAddress] = useState('')
+
   useEffect(() => {
     dispatch(getUserInfo());
+
+    try {
+      let metamask_account = JSON.parse(localStorage.getItem('user', ''))['metamask_account']
+
+      if (metamask_account !== '' && metamask_account !== null && metamask_account !== undefined) {
+          let len = metamask_account.length
+          setMetaMaskAddress(`${metamask_account.slice(0, 5)}...${metamask_account.slice(len - 5, len)}`)
+      }
+  } catch (e) {
+      console.log(e)
+  }
   }, []);
 
   const RegisterSchema = Yup.object().shape({
@@ -42,7 +50,7 @@ export default function Settings() {
   });
 
   const formik = useFormik({
-    initialValues: {
+    initialValues: { 
       email: "",
       newEmail: "",
       consent: true,
@@ -50,7 +58,6 @@ export default function Settings() {
     validationSchema: RegisterSchema,
     onSubmit: async (values, { setErrors, setSubmitting, resetForm }) => {
       setSubmitting(true);
-      console.log(values);
       await dispatch(updateUserEmail({ email: values.email, newEmail: values.newEmail, reset: resetForm, setErrors }));
       setSubmitting(false);
     },
@@ -74,10 +81,8 @@ export default function Settings() {
     },
     validationSchema: RegisterSchema2,
     onSubmit: async (values, { setErrors, setSubmitting, resetForm }) => {
-      console.log(values);
       if (values.newPassword === values.confirmNewPassword) {
         setSubmitting(true);
-        console.log(values);
         await dispatch(updateUserPassword({ password: values.password, newPassword: values.newPassword, reset: resetForm, setErrors }));
         setSubmitting(false);
       } else {
@@ -90,7 +95,7 @@ export default function Settings() {
     <>
       <Header selectedMenu={3} />
 
-      <Container maxWidth="80vw" sx={{ marginTop: 5, maxWidth: "80vw" }}>
+      <Container maxWidth="80vw" sx={{ marginTop: 5, maxWidth: '1800px', width: '95vw' }}>
         <Grid container spacing={3}>
           {/* Reset Email Address */}
           <Grid item md={6} xs={12}>
@@ -197,7 +202,7 @@ export default function Settings() {
 
           {/* Reset password */}
           <Grid item md={6} xs={12}>
-            <Box
+            {MetaMaskAddress === '' && <Box
               p={5}
               sx={{
                 border: "solid",
@@ -292,7 +297,8 @@ export default function Settings() {
                   </Form>
                 </Stack>
               </FormikProvider>
-            </Box>
+            </Box>}
+            
           </Grid>
         </Grid>
       </Container>

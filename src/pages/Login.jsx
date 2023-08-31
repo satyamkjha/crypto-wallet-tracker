@@ -60,7 +60,6 @@ export default function Login() {
           password: values["password"],
         })
         .then((response) => {
-          console.log(response.data.data);
           if (response.status === 200 && response.data.status === "ok" && response.data.message === "redirect to 2 step verification") {
             navigate(`/2-step-verification/${values["email"]}`);
           }
@@ -101,7 +100,6 @@ export default function Login() {
         credentialsJWT: credentialsJWT,
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200 && response.data.status === "ok") {
           localStorage.setItem("accessToken", response.data.data.tokens.access);
           localStorage.setItem("refreshToken", response.data.data.tokens.refresh);
@@ -128,7 +126,6 @@ export default function Login() {
 
   window.onload = function () {
     window.setTimeout(() => {
-      console.log(ref.current.offsetWidth);
       window.google.accounts.id.initialize({
         client_id: googleClientId,
         callback: googleSignupSuccess,
@@ -144,17 +141,36 @@ export default function Login() {
   };
 
   // Metamask login
-  const { status, connect, account, chainId, ethereum } = useMetaMask();
+  const { status, connect, ethereum } = useMetaMask();
   const [metamaskConnecting, setmetamaskConnecting] = useState(false);
-  const metaMaskeSignup = async (account, chainId) => {
+
+  const connectToMetamask = async () => {
+    if (window.ethereum.selectedAddress) {
+      getNonce(window.ethereum.selectedAddress);
+    }
+  }
+
+  const getNonce = async (account) => {
+    await axios.get(`${backendServerBaseURL}/api/auth/login?account=${account}&type=metamask`).then((response) => {
+      metaMaskeSignup(account, response.data.nonce)  
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+
+  const metaMaskeSignup = async (account, nonce) => {
+    var from = window.ethereum.selectedAddress;
+    var params = [from, nonce];
+    var method = "personal_sign";
+    const signature = await ethereum.request({ method, params });
+
     await axios
       .post(`${backendServerBaseURL}/api/auth/login`, {
         type: "metamask",
+        signature: signature,
         account: account,
-        chainId: chainId,
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200 && response.data.status === "ok") {
           localStorage.setItem("accessToken", response.data.data.tokens.access);
           localStorage.setItem("refreshToken", response.data.data.tokens.refresh);
@@ -194,8 +210,7 @@ export default function Login() {
 
     if (status === "connected") {
       if (metamaskConnecting) {
-        console.log(`Connected account ${account} on chain ID ${chainId}`);
-        metaMaskeSignup(account, chainId);
+        connectToMetamask()
       }
     }
   }, [status]);
@@ -205,17 +220,18 @@ export default function Login() {
       <Box sx={{ display: "flex", flexDirection: "column", width: "100%", height: "100vh" }}>
         <LandingHeader />
 
-        <Box display="flex" justifyContent="center" alignItems="center" minWidth="100%" flexGrow="1">
-          <Grid item xs={11} md={5}>
+        <Box display="flex" justifyContent="center" alignItems="center"  flexGrow="1" >
+          <Grid item xs={11} md={8} sx={{ display: "flex", flexDirection: "column", alignItems: 'center' }} >
             <FormikProvider value={formik}>
               <Box
                 sx={{
                   backgroundColor: "background.neutral",
                   paddingTop: 4,
                   paddingBottom: 4,
-                  paddingRight: { md: 10, xs: 3 },
-                  paddingLeft: { md: 10, xs: 3 },
+                  paddingRight: { lg: 10, xs: 3 },
+                  paddingLeft: { lg: 10, xs: 3 },
                   borderRadius: 1,
+                  maxWidth: '1200px'
                 }}
               >
                 <Typography variant="h3" textAlign="center" pb={2}>

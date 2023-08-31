@@ -1,34 +1,34 @@
 export const chains = [
     {
         name: 'ethereum-mainnet',
-        logo: '/static/ethereum.svg'
+        logo: 'ethereum.svg'
     },
     {
         name: 'ethereum-ropsten',
-        logo: '/static/ethereum.svg'
+        logo: 'ethereum.svg'
     },
     {
         name: 'ethereum-rinkeby',
-        logo: '/static/ethereum.svg'
+        logo: 'ethereum.svg'
     },
     {
         name: 'ethereum-kovan',
-        logo: '/static/ethereum.svg'
+        logo: 'ethereum.svg'
     },
     {
         name: 'bsc-testnet',
-        logo: '/static/binance.svg'
+        logo: 'binance.svg'
     },
     {
         name: 'bsc-mainnet',
-        logo: '/static/binance.svg'
+        logo: 'binance.svg'
     },
     {
         name: 'polygon-testnet',
-        logo: '/static/polygon.svg'
+        logo: 'polygon.svg'
     },
     {
         name: 'polygon-mainnet',
-        logo: '/static/polygon.svg'
+        logo: 'polygon.svg'
     },
 ]

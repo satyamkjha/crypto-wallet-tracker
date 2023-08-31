@@ -2,7 +2,7 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { Box, Button, Container, Grid, Link, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Header from "../components/Dashboard/Header";
 import {
   calculatePriceInCrypto,
@@ -11,7 +11,6 @@ import {
   selectCurrentExchangerates,
   selectCurrentPlan,
   selectCurrentpriceInCrypto,
-  updatePlan,
   updatePlanUsingCoinpayment,
 } from "../redux/slices/pricingSlice";
 // import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
@@ -27,14 +26,14 @@ import Select from "@mui/material/Select";
 import { useState } from "react";
 import { getPlanStats, selectPlanStats } from "../redux/slices/dashboardSlice";
 import { formatDate } from "../utils/formatTime";
+import { assetsURL } from "../utils/assetsURL";
 
 export default function Pricing() {
   const currentPlan = useSelector(selectCurrentPlan);
   const currentpriceInCrypto = useSelector(selectCurrentpriceInCrypto);
   const currentExchangerates = useSelector(selectCurrentExchangerates);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [updatingPlanTo, setupdatingPlanTo] = useState(-1);
   const [SubscriptionExpiredDialogOpen, setSubscriptionExpiredDialogOpen] = React.useState(false);
   const handleSubscriptionExpiredDialogClose = () => {
@@ -51,18 +50,20 @@ export default function Pricing() {
     if (searchParams.get("open_subscription_expired_dialog")) {
       setSubscriptionExpiredDialogOpen(true);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const payUsingStripe = () => {
-    if (currentPlan == updatingPlanTo) {
-      console.log("No need to update free plan");
-    } else {
-      dispatch(updatePlan({ targetPlan: updatingPlanTo }));
-    }
-  };
+  // const payUsingStripe = () => {
+  //   if (currentPlan == updatingPlanTo) {
+  //     console.log("No need to update free plan");
+  //   } else {
+  //     dispatch(updatePlan({ targetPlan: updatingPlanTo }));
+  //   }
+  // };
 
   const payUsingCoinpayments = () => {
-    if (currentPlan == updatingPlanTo) {
+    if (currentPlan === updatingPlanTo) {
       console.log("No need to update free plan");
     } else {
       dispatch(updatePlanUsingCoinpayment({ targetPlan: updatingPlanTo, targetCrypto: selectedCryptoCurrency }));
@@ -72,9 +73,7 @@ export default function Pricing() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = (updatingPlanTo) => {
-    console.log(currentPlan);
-    console.log(updatingPlanTo);
-    if (currentPlan != updatingPlanTo) {
+    if (currentPlan !== updatingPlanTo) {
       setOpen(true);
     }
   };
@@ -99,7 +98,7 @@ export default function Pricing() {
     <>
       <Header selectedMenu={1} />
 
-      <Container maxWidth="80vw" sx={{ marginTop: 5, maxWidth: "80vw" }}>
+      <Container maxWidth={'80vw'}  sx={{ marginTop: 5, maxWidth: '1800px', width: '95vw' }}>
         <Box pb={3} sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <Typography variant="h6">Our Pricing</Typography>
 
@@ -108,14 +107,16 @@ export default function Pricing() {
             <span style={{ color: "green" }}>
               {currentPlan === 0 && " Free"}
               {currentPlan === 1 && " Beginner"}
-              {currentPlan === 2 && " Enterprise"}/ {formatDate(planStats?.subscription_end)}
+              {currentPlan === 2 && " Enterprise"}{planStats?.subscription_end &&  "/"+formatDate(planStats?.subscription_end)}
             </span>
           </Typography>
         </Box>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={2} direction="row"
+  justifyContent="center"
+  alignItems="center">
           {/* Free plan */}
-          <Grid item md={4} xs={12}>
+          <Grid item lg={4} md={6} sm={6} xs={12}>
             <Stack
               spacing={1}
               p={3}
@@ -188,7 +189,7 @@ export default function Pricing() {
           </Grid>
 
           {/* Beginner Plan */}
-          <Grid item md={4} xs={12}>
+          <Grid item lg={4} md={6} sm={6} xs={12}>
             <Stack
               spacing={1}
               p={3}
@@ -262,7 +263,7 @@ export default function Pricing() {
           </Grid>
 
           {/* Enterprise Plan */}
-          <Grid item md={4} xs={12}>
+          <Grid item lg={4} md={6} sm={6} xs={12}>
             <Stack
               spacing={1}
               p={3}
@@ -370,7 +371,9 @@ export default function Pricing() {
               }}
             >
               <Typography variant="body2" sx={{ fontWeight: "bold" }} textAlign="center">
-                For any Custom Plans - <Link sx={{ cursor: "pointer" }}>Contact US</Link>
+                For any Custom Plans - <Link onClick={() => {
+                                        window.open('mailto:info@credshields.com', '_blank');
+                                    }} sx={{ cursor: "pointer" }}>Contact US</Link>
               </Typography>
             </Box>
           </Grid>
@@ -401,7 +404,7 @@ export default function Pricing() {
                     width: "100%",
                   }}
                   alt="ethereum"
-                  src="static/stripe.png"
+                  src="${assetsURL}stripe.png"
                 />
 
                 <Button
@@ -435,7 +438,7 @@ export default function Pricing() {
                     width: "100%",
                   }}
                   alt="ethereum"
-                  src="static/coinpayments.svg"
+                  src={`${assetsURL}coinpayments.svg`}
                 />
 
                 <Button
@@ -493,7 +496,7 @@ export default function Pricing() {
                     width: "100%",
                   }}
                   alt="ethereum"
-                  src="static/coinpayments.svg"
+                  src={`${assetsURL}coinpayments.svg`}
                   mb={3}
                 />
 
@@ -511,7 +514,7 @@ export default function Pricing() {
                       setselectedCryptoCurrency(e.target.value);
                     }}
                   >
-                    {currentExchangerates.length != 0 &&
+                    {currentExchangerates.length !== 0 &&
                       Object.keys(currentExchangerates).map((curr) => {
                         return <MenuItem value={curr}>{curr}</MenuItem>;
                       })}
