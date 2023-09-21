@@ -32,10 +32,7 @@ export default function CreateNewInvestigationDialog() {
 	const Schema = Yup.object().shape({
 		address: Yup.string('Enter valid address')
 			.required('Address is required')
-			.matches(
-				'/^xdc[a-fA-F0-9]{40}$|^0x[a-fA-F0-9]{40}$/',
-				'Contract Address is not valid'
-			),
+			.matches(/^0x[a-fA-F0-9]{40}$/, 'Contract Address is not valid'),
 		chain: Yup.string('Select valid chain').required('Chain is required'),
 	});
 
