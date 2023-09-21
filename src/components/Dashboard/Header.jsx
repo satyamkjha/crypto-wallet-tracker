@@ -35,8 +35,6 @@ export default function Header({ selectedMenu }) {
 		window.open('/login', '_self');
 	};
 
-	console.log(assetsURL);
-
 	const isDesktop = useMediaQuery('(min-width:1000px)');
 
 	const showAddress = useMediaQuery('(min-width:1300px)');

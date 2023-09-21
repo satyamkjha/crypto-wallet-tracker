@@ -7,8 +7,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import {
 	Link,
 	Box,
-	Button,
-	Card,
 	Container,
 	Fab,
 	Grid,
@@ -28,7 +26,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../components/Dashboard/Header';
 import {
 	getInvestigation,
@@ -89,6 +87,9 @@ export default function Investigation() {
 	const VISNodesDataset = useRef(null);
 	const VISEdgesDataset = useRef(null);
 	const vis = window.vis;
+
+	const [customNote, setCustomNote] = useState('');
+	const [loadingUpdateCustomNote, setLoadingUpdateCustomNote] = useState(false);
 
 	const nodeColors = [
 		'#f44336',
@@ -426,6 +427,29 @@ export default function Investigation() {
 		}
 	};
 
+	const updateCustomNote = () => {
+		setLoadingUpdateCustomNote(true);
+		dispatch(
+			updateCustomNotes({
+				id: params.id,
+				uid: selectedNode.uid,
+				custom_note: customNote,
+			})
+		);
+		setTimeout(() => setLoadingUpdateCustomNote(false), 2000);
+		let temp = { ...selectedNode };
+		temp.custom_note = customNote;
+		VISNodesDataset.current.update(temp);
+	};
+
+	useEffect(() => {
+		if (selectedNodeInfo) {
+			console.log(selectedNodeInfo);
+			if (selectedNodeInfo.custom_note)
+				setCustomNote(selectedNodeInfo.custom_note);
+		}
+	}, [selectedNodeInfo]);
+
 	useEffect(() => {
 		var container = document.getElementById('mynetwork');
 
@@ -625,7 +649,7 @@ export default function Investigation() {
 								alignItems: 'flex-start',
 								marginBottom: { xs: 1, md: 0 },
 								justifyContent: 'flex-start',
-								width: {xs: '100%', sm: 'fit-content'} ,
+								width: { xs: '100%', sm: 'fit-content' },
 							}}>
 							<Fab
 								color='text.secondary'
@@ -637,9 +661,12 @@ export default function Investigation() {
 							</Fab>
 
 							<TextField
-              fullWidth
+								fullWidth
 								disabled={true}
-								sx={{ width: { xs: '100%', sm: '15rem', md: '25rem', lg: '30rem'}, marginRight: 1 }}
+								sx={{
+									width: { xs: '100%', sm: '15rem', md: '25rem', lg: '30rem' },
+									marginRight: 1,
+								}}
 								placeholder='Address'
 								value={address}
 								onChange={(e) => {
@@ -691,7 +718,7 @@ export default function Investigation() {
 							display: 'flex',
 							alignItems: 'flex-start',
 							marginTop: { xs: 2, md: 0 },
-              marginLeft: 1,
+							marginLeft: 1,
 							justifyContent: 'flex-start',
 							width: { xs: '100%', md: 'fit-content' },
 						}}>
@@ -1276,31 +1303,24 @@ export default function Investigation() {
 											sx={{ color: 'text.secondary' }}>
 											Custom Notes :
 										</Typography>
-
 										<Input
 											fullWidth
-											value={
-												selectedNodeInfo?.custom_note
-													? selectedNodeInfo?.custom_note
-													: ''
-											}
+											value={customNote}
 											disableUnderline
+											minRows={3}
 											multiline
 											onChange={(event) => {
-												dispatch(
-													updateCustomNotes({
-														id: params.id,
-														uid: selectedNode.uid,
-														custom_note: event.target.value,
-													})
-												);
-
-												let temp = { ...selectedNode };
-												temp.custom_note = event.target.value;
-												VISNodesDataset.current.update(temp);
+												setCustomNote(event.target.value);
 											}}
 											placeholder='Add a Custom Note'
 										/>
+										<LoadingButton
+											type='submit'
+											variant='contained'
+											onClick={updateCustomNote}
+											loading={loadingUpdateCustomNote}>
+											{customNote.length > 0 ? 'Update' : 'Add'} Custom Note
+										</LoadingButton>
 									</Box>
 								)}
 							</Stack>

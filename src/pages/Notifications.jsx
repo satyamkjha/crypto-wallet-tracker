@@ -165,7 +165,7 @@ export default function Notifications() {
                                         }}
                                     >
                                         <AddIcon sx={{ fontSize: '1.5rem' }} />
-                                    </Fab>
+                                     </Fab>
                                     <Typography sx={{ fontWeight: 'bold' }}>Add Address For Monitoring</Typography>
                                 </Box> 
 

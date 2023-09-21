@@ -87,7 +87,7 @@ export const getAllInvestigations = createAsyncThunk(
 export const getPlanStats = createAsyncThunk(
 	'dashboard/getPlanStats',
 	async (_, thunkAPI) => {
-		thunkAPI.dispatch(updateplanStatsLoading(true));
+ 		thunkAPI.dispatch(updateplanStatsLoading(true));
 		const token = await localStorage.getItem('accessToken', '');
 
 		let config = {
