@@ -1,9 +1,5 @@
-import AppleIcon from '@mui/icons-material/Apple';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import EmailIcon from '@mui/icons-material/Email';
-import GoogleIcon from '@mui/icons-material/Google';
-import PersonIcon from '@mui/icons-material/Person';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import ShieldIcon from '@mui/icons-material/Shield';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -15,7 +11,6 @@ import {
 	Button,
 	Container,
 	Divider,
-	Fab,
 	Grid,
 	IconButton,
 	InputAdornment,
@@ -32,12 +27,16 @@ import { backendServerBaseURL } from '../utils/backendServerBaseURL';
 import { useMetaMask } from 'metamask-react';
 import { googleClientId } from '../utils/constants';
 import { assetsURL } from '../utils/assetsURL';
+import { passwordStrength } from 'check-password-strength';
+import { getPasswordStrengthMessage } from '../utils/helperFunctions';
 
 export default function Signup() {
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const navigate = useNavigate();
 	const ref = useRef('');
+
+	const [passwordError, setPasswordError] = useState(passwordStrength(''));
 
 	const RegisterSchema = Yup.object().shape({
 		email: Yup.string()
@@ -102,7 +101,12 @@ export default function Signup() {
 		},
 	});
 
-	const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
+	const { errors, touched, handleSubmit, isSubmitting, getFieldProps, values } =
+		formik;
+
+	useEffect(() => {
+		setPasswordError(passwordStrength(values['password']));
+	}, [values['password']]);
 
 	const showGoogleSignupPrompt = () => {
 		window.google.accounts.id.prompt();
@@ -367,13 +371,19 @@ export default function Signup() {
 
 					<Container
 						maxWidth='lg'
-						sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', flexGrow: 1 }}>
+						sx={{
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							alignItems: 'center',
+							flexGrow: 1,
+						}}>
 						<FormikProvider value={formik}>
 							<Box
 								sx={{
 									paddingTop: 3,
 									paddingBottom: 3,
-									paddingRight: { xs: 2, md: 4, xl: 8, },
+									paddingRight: { xs: 2, md: 4, xl: 8 },
 									paddingLeft: { xs: 2, md: 4, xl: 8 },
 									borderRadius: 1,
 									width: { lg: '80%', md: '100%', sm: '80%', xs: '90%' },
@@ -429,8 +439,13 @@ export default function Signup() {
 													</InputAdornment>
 												),
 											}}
-											error={Boolean(touched.password && errors.password)}
-											helperText={touched.password && errors.password}
+											error={Boolean(
+												touched.password &&
+													passwordError &&
+													(passwordError.length < 8 ||
+														passwordError.contains.length < 4)
+											)}
+											helperText={getPasswordStrengthMessage(passwordError)}
 										/>
 
 										<TextField
