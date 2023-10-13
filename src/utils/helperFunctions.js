@@ -19,7 +19,7 @@ export const getPasswordStrengthMessage = (passwordError) => {
 		return `Your password should contain a
             ${unique(passwordError.contains, charTypes).map(
 							(item, index, array) =>
-								index === array.length - 1 ? ` ${item}` : ` ${item},`
+								index === array.length - 1 ? ` ${item}` : ` ${item}`
 						)}
             ${
 							passwordError.length < 8 &&

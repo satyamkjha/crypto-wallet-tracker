@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from '../components/Dashboard/Header';
-import axios from '../utils/axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { backendServerBaseURL } from '../utils/backendServerBaseURL';
 import { useSearchParams } from 'react-router-dom';
 import {
 	Typography,
@@ -16,7 +14,9 @@ import {
 } from '@mui/material';
 // import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 // import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import LoadingButton from '@mui/lab/LoadingButton';
+import axios from '../utils/axios';
+import { backendServerBaseURL } from '../utils/backendServerBaseURL';
+
 import AddIcon from '@mui/icons-material/Add';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CreateNotification from '../components/Notifications/CreateNotification';
@@ -34,8 +34,9 @@ import {
 import TelegramIntegrationDialog from '../components/Notifications/TelegramIntegrationDialog';
 import { getPlanStats, selectPlanStats } from '../redux/slices/dashboardSlice';
 import { assetsURL } from '../utils/assetsURL';
+import LoadingButton from '@mui/lab/LoadingButton';
 
-export default async function Notifications() {
+export default function Notifications() {
 	const dispatch = useDispatch();
 	const notifications = useSelector(selectNotifications);
 	const [searchParams] = useSearchParams();
@@ -52,22 +53,23 @@ export default async function Notifications() {
 		}
 	}, []);
 
-	// const disableNotification = async () => {
-	// 	const token = await localStorage.getItem('accessToken', '');
+	const disableNotification = async () => {
+		const token = await localStorage.getItem('accessToken', '');
 
-	// 	let config = {
-	// 		headers: {
-	// 			Authorization: `Bearer ${token}`,
-	// 		},
-	// 	};
+		let config = {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+			data: {
+				notification_type: 'email',
+			},
+		};
 
-	// 	let response = await axios.get(
-	// 		`${backendServerBaseURL}/notifications/disable`,
-	// 		config
-	// 	);
-
-	// 	console.log(response);
-	// };
+		let response = await axios.delete(
+			`${backendServerBaseURL}/api/notifications/disable`,
+			config
+		);
+	};
 
 	return (
 		<>
@@ -80,7 +82,7 @@ export default async function Notifications() {
 					pb={3}
 					sx={{
 						display: 'flex',
-						alignItems: 'center',
+						alignItems: 'flex-start',
 						justifyContent: 'space-between',
 					}}>
 					<Typography variant='h5'>Enabled Notifications</Typography>
@@ -99,13 +101,15 @@ export default async function Notifications() {
 								{planStats.remaining_notifications}
 							</span>
 						</Typography>
-						{/* <LoadingButton
+						<LoadingButton
+							sx={{
+								marginTop: '20px',
+							}}
+							onClick={() => disableNotification()}
 							size='large'
-							type='submit'
-							variant='contained'
-							onClick={() => disableNotification()}>
-							Disable Notification
-						</LoadingButton> */}
+							variant='contained'>
+							Disable Notfications
+						</LoadingButton>
 					</Box>
 				</Box>
 
@@ -265,7 +269,7 @@ export default async function Notifications() {
 											minHeight: '2rem',
 											minWidth: '2rem',
 										}}>
-										<AddIcon sx={{ fontSize: '1.5rem' }} />
+										<AddIcon sx={{ fontSize: '1.5rem' }} />+{' '}
 									</Fab>
 									<Typography sx={{ fontWeight: 'bold' }}>
 										Add Address For Monitoring
