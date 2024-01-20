@@ -249,7 +249,8 @@ export default function Signup() {
 										height: 42,
 									}}
 									src={`${assetsURL}logo.jpg`}
-								/>
+								/>{' '}
+								
 							</Box>
 						</Container>
 					</Box>

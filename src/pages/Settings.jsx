@@ -148,130 +148,6 @@ export default function Settings() {
 				<Grid container spacing={3}>
 					{/* Reset Email Address */}
 					<Grid item md={6} xs={12}>
-						<Box
-							p={5}
-							sx={{
-								border: 'solid',
-								borderWidth: 1,
-								borderRadius: 1,
-								borderColor: '#d6d6d6',
-							}}>
-							<FormikProvider value={formik}>
-								<Stack spacing={2}>
-									<Typography variant='h4'>Reset Email Address</Typography>
-
-									<Typography>
-										To Reset your email, enter your current email along with the
-										new email.
-									</Typography>
-
-									<Typography>
-										<span style={{ fontWeight: 'bold' }}>Please Note :</span>{' '}
-										All the information about your next orders would be shared
-										on your new email.
-									</Typography>
-
-									<Form autoComplete='off' noValidate onSubmit={handleSubmit}>
-										<Stack spacing={2}>
-											{errors.afterSubmit && (
-												<Alert severity='error'>{errors.afterSubmit}</Alert>
-											)}
-
-											<TextField
-												sx={{
-													display: userInfo?.email.length == 0 ? 'none' : '',
-												}}
-												fullWidth
-												type='email'
-												placeholder='Enter your Current Email Address'
-												{...getFieldProps('email')}
-												error={Boolean(touched.email && errors.email)}
-												helperText={touched.email && errors.email}
-												InputProps={{
-													startAdornment: (
-														<InputAdornment position='start'>
-															<EmailIcon sx={{ opacity: 0.5 }} />
-														</InputAdornment>
-													),
-												}}
-											/>
-
-											<TextField
-												fullWidth
-												type='email'
-												placeholder='Enter your New Email Address'
-												{...getFieldProps('newEmail')}
-												error={Boolean(touched.newEmail && errors.newEmail)}
-												helperText={touched.newEmail && errors.newEmail}
-												InputProps={{
-													startAdornment: (
-														<InputAdornment position='start'>
-															<EmailIcon sx={{ opacity: 0.5 }} />
-														</InputAdornment>
-													),
-												}}
-											/>
-
-											<Box>
-												<Grid container>
-													<Grid item xs={7}>
-														<LoadingButton
-															sx={{ minHeight: '4rem' }}
-															fullWidth
-															size='large'
-															type='submit'
-															variant='contained'
-															loading={isSubmitting}>
-															Reset Email
-														</LoadingButton>
-													</Grid>
-												</Grid>
-											</Box>
-										</Stack>
-									</Form>
-								</Stack>
-							</FormikProvider>
-						</Box>
-
-						{/* Facing issue */}
-						<Box
-							sx={{
-								backgroundColor: 'background.neutral',
-								display: 'flex',
-								alignItems: 'center',
-								borderRadius: 1,
-							}}
-							p={3}
-							mt={3}>
-							<Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-								<ContactSupportIcon sx={{ fontSize: '3rem', marginRight: 1 }} />
-
-								<Box>
-									<Typography variant='h6'>Facing issue?</Typography>
-									<Typography variant='body2'>
-										Contact our Support team to get support.
-									</Typography>
-								</Box>
-							</Box>
-
-							<Box>
-								<Button
-									variant='outlined'
-									size='large'
-									sx={{
-										backgroundColor: '#b3b3b3',
-										color: '#121212',
-										minWidth: '10rem',
-										border: 'none',
-									}}>
-									Contact
-								</Button>
-							</Box>
-						</Box>
-					</Grid>
-
-					{/* Reset password */}
-					<Grid item md={6} xs={12}>
 						{MetaMaskAddress === '' && (
 							<Box
 								p={5}
@@ -281,7 +157,7 @@ export default function Settings() {
 									borderRadius: 1,
 									borderColor: '#d6d6d6',
 								}}>
-								<FormikProvider value={formik2}>
+								<FormikProvider value={formik}>
 									<Stack spacing={2}>
 										<Typography variant='h4'>Reset Password</Typography>
 
@@ -429,11 +305,108 @@ export default function Settings() {
 												</Box>
 											</Stack>
 										</Form>
+										{/* <Form autoComplete='off' noValidate onSubmit={handleSubmit}>
+										<Stack spacing={2}>
+											{errors.afterSubmit && (
+												<Alert severity='error'>{errors.afterSubmit}</Alert>
+											)}
+
+											<TextField
+												sx={{
+													display: userInfo?.email.length == 0 ? 'none' : '',
+												}}
+												fullWidth
+												type='email'
+												placeholder='Enter your Current Email Address'
+												{...getFieldProps('email')}
+												error={Boolean(touched.email && errors.email)}
+												helperText={touched.email && errors.email}
+												InputProps={{
+													startAdornment: (
+														<InputAdornment position='start'>
+															<EmailIcon sx={{ opacity: 0.5 }} />
+														</InputAdornment>
+													),
+												}}
+											/>
+
+											<TextField
+												fullWidth
+												type='email'
+												placeholder='Enter your New Email Address'
+												{...getFieldProps('newEmail')}
+												error={Boolean(touched.newEmail && errors.newEmail)}
+												helperText={touched.newEmail && errors.newEmail}
+												InputProps={{
+													startAdornment: (
+														<InputAdornment position='start'>
+															<EmailIcon sx={{ opacity: 0.5 }} />
+														</InputAdornment>
+													),
+												}}
+											/>
+
+											<Box>
+												<Grid container>
+													<Grid item xs={7}>
+														<LoadingButton
+															sx={{ minHeight: '4rem' }}
+															fullWidth
+															size='large'
+															type='submit'
+															variant='contained'
+															loading={isSubmitting}>
+															Reset Email
+														</LoadingButton>
+													</Grid>
+												</Grid>
+											</Box>
+										</Stack>
+									</Form> */}
 									</Stack>
 								</FormikProvider>
 							</Box>
 						)}
+
+						{/* Facing issue */}
+						<Box
+							sx={{
+								backgroundColor: 'background.neutral',
+								display: 'flex',
+								alignItems: 'center',
+								borderRadius: 1,
+							}}
+							p={3}
+							mt={3}>
+							<Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+								<ContactSupportIcon sx={{ fontSize: '3rem', marginRight: 1 }} />
+
+								<Box>
+									<Typography variant='h6'>Facing issue?</Typography>
+									<Typography variant='body2'>
+										Contact our Support team to get support.
+									</Typography>
+								</Box>
+							</Box>
+
+							<Box>
+								<Button
+									variant='outlined'
+									size='large'
+									sx={{
+										backgroundColor: '#b3b3b3',
+										color: '#121212',
+										minWidth: '10rem',
+										border: 'none',
+									}}>
+									Contact
+								</Button>
+							</Box>
+						</Box>
 					</Grid>
+
+					{/* Reset password */}
+					<Grid item md={6} xs={12}></Grid>
 				</Grid>
 			</Container>
 		</>
