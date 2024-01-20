@@ -442,6 +442,7 @@ export default function Investigation() {
 		VISNodesDataset.current.update(temp);
 	};
 
+	
 	useEffect(() => {
 		if (selectedNodeInfo) {
 			console.log(selectedNodeInfo);
