@@ -4,5 +4,6 @@ COPY ./yarn.lock .
 COPY ./package.json .
 RUN yarn install
 COPY . .
+COPY ./tracker-newrelic.js /app/public/tracker-newrelic.js
 RUN apk --no-cache add curl
 RUN yarn build
