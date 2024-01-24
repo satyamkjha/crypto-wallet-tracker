@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       ENV:
-        description: 'Build environment'
+        description: "Build environment"
         required: true
-        default: 'stage'
+        default: "stage"
         type: choice
         options:
           - stage
@@ -36,8 +36,10 @@ jobs:
         run: |
           if [[ "${{ inputs.ENV }}" == "stage" ]]; then
             aws s3 cp s3://credshields-dev/env_file/tracker_frontend.env ${PROJECT_DIRECTORY}/.env
+            aws s3 cp s3://credshields-dev/new-relic/tracker-newrelic.js ${PROJECT_DIRECTORY}/
           elif [[ "${{ inputs.ENV }}" == "prod" ]]; then
             aws s3 cp s3://credshields-prod/env_file/tracker_frontend.env ${PROJECT_DIRECTORY}/.env
+            aws s3 cp s3://credshields-prod/new-relic/tracker-newrelic.js ${PROJECT_DIRECTORY}/
           fi
       - name: Logging in on aws ecr
         run: aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 132830644905.dkr.ecr.us-east-2.amazonaws.com
