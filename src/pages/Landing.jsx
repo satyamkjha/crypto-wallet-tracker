@@ -372,8 +372,9 @@ export default function Landing() {
 					background={'#FFFFFF'}>
 					<Swiper
 						slidesPerView={'auto'}
-						spaceBetween={30}
 						navigation={true}
+						centeredSlides={true}
+						spaceBetween={0}
 						modules={[Navigation, Pagination]}
 						style={{
 							width: '80%',
@@ -400,8 +401,8 @@ export default function Landing() {
 									alignItems={'center'}
 									height={'fit-content'}
 									width={{
-										xs: '100%',
-										sm: '100%',
+										xs: '90%',
+										sm: '90%',
 										md: '90%',
 										lg: '80%',
 									}}
@@ -414,15 +415,19 @@ export default function Landing() {
 										alignItems={'flex-start'}
 										height={'300px'}
 										width={{
-											xs: '90%',
-											sm: '90%',
+											xs: '80%',
+											sm: '80%',
 											md: '40%',
 										}}
-										textAlign={'left'}
+										textAlign={{
+											xs: 'center',
+											sm: 'center',
+											md: 'left',
+										}}
 										sx={{
 											paddingY: '20px',
 										}}>
-										<Typography fontWeight={700} variant='h6'>
+										<Typography width={'100%'} fontWeight={700} variant='h6'>
 											{item.heading}
 										</Typography>
 										<Typography
@@ -439,8 +444,8 @@ export default function Landing() {
 										sx={{
 											height: 'auto',
 											width: {
-												xs: '90%',
-												sm: '90%',
+												xs: '80%',
+												sm: '80%',
 												md: '40%',
 											},
 										}}
