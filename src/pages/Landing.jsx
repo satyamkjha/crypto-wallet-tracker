@@ -139,7 +139,7 @@ export default function Landing() {
 							maxWidth: '650px',
 							width: '40%',
 						}}
-						src={`/static/images/hero_left.svg`}
+						src={`${assetsURL}landing/hero_left.svg`}
 					/>
 					<Box
 						component='img'
@@ -148,7 +148,7 @@ export default function Landing() {
 							maxWidth: '650px',
 							width: '40%',
 						}}
-						src={`/static/images/hero_right.svg`}
+						src={`${assetsURL}landing/hero_right.svg`}
 					/>
 				</Stack>
 				<Typography
@@ -238,7 +238,7 @@ export default function Landing() {
 								height: 'auto',
 								width: '100%',
 							}}
-							src={`static/images/key_1.svg`}
+							src={`${assetsURL}landing/key_1.svg`}
 						/>
 						<Typography marginTop={'30px'} marginBottom={'50px'} variant='h6'>
 							Transaction Visualization
@@ -260,7 +260,7 @@ export default function Landing() {
 								height: 'auto',
 								width: '100%',
 							}}
-							src={`static/images/key_2.svg`}
+							src={`${assetsURL}landing/key_2.svg`}
 						/>
 						<Typography marginTop={'30px'} marginBottom={'50px'} variant='h6'>
 							Entity Analysis
@@ -282,7 +282,7 @@ export default function Landing() {
 								height: 'auto',
 								width: '100%',
 							}}
-							src={`static/images/key_3.svg`}
+							src={`${assetsURL}landing/key_3.svg`}
 						/>
 						<Typography marginTop={'30px'} marginBottom={'50px'} variant='h6'>
 							Wallet Tagging
@@ -304,7 +304,7 @@ export default function Landing() {
 								height: 'auto',
 								width: '100%',
 							}}
-							src={`static/images/key_4.svg`}
+							src={`${assetsURL}landing/key_4.svg`}
 						/>
 						<Typography marginTop={'30px'} marginBottom={'50px'} variant='h6'>
 							Address Monitoring
@@ -326,7 +326,7 @@ export default function Landing() {
 								height: 'auto',
 								width: '100%',
 							}}
-							src={`static/images/key_5.svg`}
+							src={`${assetsURL}landing/key_5.svg`}
 						/>
 						<Typography marginTop={'30px'} marginBottom={'50px'} variant='h6'>
 							Multiple Networks
@@ -449,7 +449,7 @@ export default function Landing() {
 												md: '40%',
 											},
 										}}
-										src={`/static/images/${item.imgLink}.svg`}
+										src={`${assetsURL}landing/${item.imgLink}.svg`}
 									/>
 								</Stack>
 							</SwiperSlide>
