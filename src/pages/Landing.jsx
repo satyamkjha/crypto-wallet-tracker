@@ -16,16 +16,11 @@ import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import PublicHeader from '../components/Landing/PublicHeader';
+import PublicFooter from '../components/Landing/PublicFooter';
 
 export default function Landing() {
 	const navigate = useNavigate();
-
-	const [open, setOpen] = React.useState(false);
-
-	const toggleDrawer = (state) => {
-		setOpen(!state);
-	};
-
 	const benefitsData = [
 		{
 			heading: 'Transaction Visualization',
@@ -66,133 +61,9 @@ export default function Landing() {
 				flexDirection: 'column',
 				margin: 0,
 				padding: 0,
+				overflowX: 'hidden',
 			}}>
-			<Stack
-				direction={'row'}
-				justifyContent={'space-between'}
-				alignItems={'center'}
-				height={'100px'}
-				width={'90%'}
-				sx={{
-					paddingY: '20px',
-				}}>
-				<Stack
-					width={{
-						xs: 'calc(100% - 60px)',
-						sm: 'calc(100% - 60px)',
-						md: '300px',
-					}}
-					direction={'row'}
-					justifyContent={'center'}
-					alignItems={'center'}
-					height={'100%'}
-					spacing={2}
-					width={'fit-content'}>
-					<Box
-						component='img'
-						sx={{
-							height: 42,
-						}}
-						src={`/static/logo.jpg`}
-					/>
-					<Divider
-						style={{
-							height: '50px',
-						}}
-						orientation='vertical'
-						flexItem
-						color='black'
-					/>
-					<Typography variant='h4'>Wallet Tracker</Typography>
-				</Stack>
-				<Box
-					display={{
-						xs: 'block',
-						sm: 'block',
-						md: 'block',
-						lg: 'none',
-					}}>
-					<MenuIcon onClick={(e) => toggleDrawer(false)} />
-				</Box>
-				{/* <Drawer
-					anchor={'right'}
-					open={open}
-					onClose={(e) => toggleDrawer(false)}>
-					<Box
-						sx={{
-							width: 250,
-						}}
-						role='presentation'
-						onClick={(e) => toggleDrawer(false)}
-						onKeyDown={(e) => toggleDrawer(false)}></Box>
-				</Drawer> */}
-
-				<Stack
-					direction={'row'}
-					justifyContent={'center'}
-					alignItems={'center'}
-					height={'100%'}
-					spacing={5}
-					display={{
-						xs: 'none',
-						sm: 'none',
-						md: 'none',
-						lg: 'flex',
-					}}
-					width={'fit-content'}>
-					<Typography
-						sx={{ cursor: 'pointer' }}
-						onClick={() => navigate('/pricing')}
-						variant='h6'>
-						Pricing{' '}
-					</Typography>
-					<Typography sx={{ cursor: 'pointer' }} variant='h6'>
-						Case Studies{' '}
-					</Typography>
-					<Typography sx={{ cursor: 'pointer' }} variant='h6'>
-						Blogs{' '}
-					</Typography>
-					<Typography sx={{ cursor: 'pointer' }} variant='h6'>
-						Terms of Use{' '}
-					</Typography>
-				</Stack>
-				<Stack
-					direction={'row'}
-					justifyContent={'center'}
-					alignItems={'center'}
-					height={'100%'}
-					spacing={5}
-					display={{
-						xs: 'none',
-						sm: 'none',
-						md: 'none',
-						lg: 'flex',
-					}}
-					width={'fit-content'}>
-					<Button
-						onClick={() => {
-							window.open('mailto:info@credshields.com', '_blank');
-						}}
-						sx={{
-							width: '150px',
-						}}
-						size='large'
-						variant='contained'>
-						Contact us
-					</Button>
-					<Button
-						sx={{
-							width: '150px',
-						}}
-						onClick={() => {
-							navigate('/login');
-						}}
-						variant='text'
-						size='large'>
-						Log In
-					</Button>
-				</Stack>
-			</Stack>
+			<PublicHeader />
 			<Box
 				sx={{
 					display: 'flex',
@@ -268,7 +139,7 @@ export default function Landing() {
 							maxWidth: '650px',
 							width: '40%',
 						}}
-						src={`/static/images/hero_left.svg`}
+						src={`${assetsURL}landing/hero_left.svg`}
 					/>
 					<Box
 						component='img'
@@ -277,7 +148,7 @@ export default function Landing() {
 							maxWidth: '650px',
 							width: '40%',
 						}}
-						src={`/static/images/hero_right.svg`}
+						src={`${assetsURL}landing/hero_right.svg`}
 					/>
 				</Stack>
 				<Typography
@@ -367,7 +238,7 @@ export default function Landing() {
 								height: 'auto',
 								width: '100%',
 							}}
-							src={`static/images/key_1.svg`}
+							src={`${assetsURL}landing/key_1.svg`}
 						/>
 						<Typography marginTop={'30px'} marginBottom={'50px'} variant='h6'>
 							Transaction Visualization
@@ -389,7 +260,7 @@ export default function Landing() {
 								height: 'auto',
 								width: '100%',
 							}}
-							src={`static/images/key_2.svg`}
+							src={`${assetsURL}landing/key_2.svg`}
 						/>
 						<Typography marginTop={'30px'} marginBottom={'50px'} variant='h6'>
 							Entity Analysis
@@ -411,7 +282,7 @@ export default function Landing() {
 								height: 'auto',
 								width: '100%',
 							}}
-							src={`static/images/key_3.svg`}
+							src={`${assetsURL}landing/key_3.svg`}
 						/>
 						<Typography marginTop={'30px'} marginBottom={'50px'} variant='h6'>
 							Wallet Tagging
@@ -433,7 +304,7 @@ export default function Landing() {
 								height: 'auto',
 								width: '100%',
 							}}
-							src={`static/images/key_4.svg`}
+							src={`${assetsURL}landing/key_4.svg`}
 						/>
 						<Typography marginTop={'30px'} marginBottom={'50px'} variant='h6'>
 							Address Monitoring
@@ -455,7 +326,7 @@ export default function Landing() {
 								height: 'auto',
 								width: '100%',
 							}}
-							src={`static/images/key_5.svg`}
+							src={`${assetsURL}landing/key_5.svg`}
 						/>
 						<Typography marginTop={'30px'} marginBottom={'50px'} variant='h6'>
 							Multiple Networks
@@ -501,8 +372,9 @@ export default function Landing() {
 					background={'#FFFFFF'}>
 					<Swiper
 						slidesPerView={'auto'}
-						spaceBetween={30}
 						navigation={true}
+						centeredSlides={true}
+						spaceBetween={0}
 						modules={[Navigation, Pagination]}
 						style={{
 							width: '80%',
@@ -529,8 +401,8 @@ export default function Landing() {
 									alignItems={'center'}
 									height={'fit-content'}
 									width={{
-										xs: '100%',
-										sm: '100%',
+										xs: '90%',
+										sm: '90%',
 										md: '90%',
 										lg: '80%',
 									}}
@@ -543,15 +415,19 @@ export default function Landing() {
 										alignItems={'flex-start'}
 										height={'300px'}
 										width={{
-											xs: '90%',
-											sm: '90%',
+											xs: '80%',
+											sm: '80%',
 											md: '40%',
 										}}
-										textAlign={'left'}
+										textAlign={{
+											xs: 'center',
+											sm: 'center',
+											md: 'left',
+										}}
 										sx={{
 											paddingY: '20px',
 										}}>
-										<Typography fontWeight={700} variant='h6'>
+										<Typography width={'100%'} fontWeight={700} variant='h6'>
 											{item.heading}
 										</Typography>
 										<Typography
@@ -568,12 +444,12 @@ export default function Landing() {
 										sx={{
 											height: 'auto',
 											width: {
-												xs: '90%',
-												sm: '90%',
+												xs: '80%',
+												sm: '80%',
 												md: '40%',
 											},
 										}}
-										src={`/static/images/${item.imgLink}.svg`}
+										src={`${assetsURL}landing/${item.imgLink}.svg`}
 									/>
 								</Stack>
 							</SwiperSlide>
@@ -608,6 +484,7 @@ export default function Landing() {
 						justifyContent={'flex-start'}
 						alignItems={'flex-start'}
 						height={'300px'}
+						maxWidth={'400px'}
 						width={{
 							xs: '90%',
 							sm: '90%',
@@ -620,7 +497,22 @@ export default function Landing() {
 						<Typography fontWeight={700} variant='h1'>
 							Questions? Let’s talk
 						</Typography>
-
+					</Stack>
+					<Stack
+						direction={'column'}
+						justifyContent={'flex-start'}
+						alignItems={'flex-start'}
+						height={'300px'}
+						maxWidth={'400px'}
+						width={{
+							xs: '90%',
+							sm: '90%',
+							md: '40%',
+						}}
+						textAlign={'left'}
+						sx={{
+							paddingY: '20px',
+						}}>
 						<Typography
 							marginTop={'30px'}
 							marginBottom={'50px'}
@@ -641,126 +533,9 @@ export default function Landing() {
 							Get Started
 						</Button>
 					</Stack>
-					<Box
-						component='img'
-						sx={{
-							height: 'auto',
-							width: {
-								xs: '90%',
-								sm: '90%',
-								md: '40%',
-							},
-						}}
-						src={`${assetsURL}logo.jpg`}
-					/>
 				</Stack>
 			</Box>
-			<Divider
-				width='80%'
-				color='#000000'
-				sx={{
-					opacity: 0.2,
-				}}
-			/>
-			<Stack
-				direction={{
-					xs: 'column',
-					sm: 'column',
-					md: 'row',
-				}}
-				justifyContent={{
-					xs: 'flex-start',
-					sm: 'flex-start',
-					md: 'space-between',
-				}}
-				alignItems={'center'}
-				height={{
-					xs: 'fit-content',
-					md: 'fit-content',
-					md: '100px',
-				}}
-				width={'90%'}
-				sx={{
-					paddingY: '20px',
-				}}>
-				<Stack
-					direction={'row'}
-					justifyContent={'center'}
-					alignItems={'center'}
-					height={'100%'}
-					spacing={2}
-					width={'fit-content'}>
-					<Box
-						component='img'
-						sx={{
-							height: 42,
-						}}
-						src={`/static/logo.jpg`}
-					/>
-					<Divider
-						style={{
-							height: '50px',
-						}}
-						orientation='vertical'
-						flexItem
-						color='black'
-					/>
-					<Typography variant='h4'>Wallet Tracker</Typography>
-				</Stack>
-				<Stack
-					direction={{
-						xs: 'column',
-						sm: 'column',
-						md: 'row',
-					}}
-					marginTop={{
-						xs: '30px',
-						sm: '30px',
-						lg: '0px',
-					}}
-					justifyContent={{
-						xs: 'flex-start',
-						sm: 'flex-start',
-						md: 'center',
-					}}
-					alignItems={'center'}
-					marginBottom={{
-						xs: '30px',
-						sm: '30px',
-					}}
-					height={'100%'}
-					spacing={5}
-					textAlign={{}}
-					width={'fit-content'}>
-					<Typography
-						sx={{ cursor: 'pointer' }}
-						onClick={() => navigate('/pricing')}
-						variant='h6'>
-						Pricing{' '}
-					</Typography>
-					<Typography sx={{ cursor: 'pointer' }} variant='h6'>
-						Case Studies{' '}
-					</Typography>
-					<Typography sx={{ cursor: 'pointer' }} variant='h6'>
-						Blogs{' '}
-					</Typography>
-					<Typography sx={{ cursor: 'pointer' }} variant='h6'>
-						Terms of Use{' '}
-					</Typography>
-				</Stack>
-			</Stack>
+			<PublicFooter />
 		</Container>
-		// <>
-		//     landing page
-		//     <Stack spacing={3} sx={{ maxWidth: '10rem' }}>
-		//         <Button href='/login' variant='contained'>Login</Button>
-		//         <Button href='/signup' variant='contained'>signup</Button>
-		//         <Button href='/forgot-password' variant='contained'>forgot-password</Button>
-		//         <Button href='/change-password' variant='contained'>change-password</Button>
-		//         <Button href='/404' variant='contained'>404</Button>
-		//         <Button href='/500' variant='contained'>500</Button>
-		//     </Stack>
-
-		// </>
 	);
 }

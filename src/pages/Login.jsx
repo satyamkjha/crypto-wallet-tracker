@@ -243,6 +243,16 @@ export default function Login() {
 		}
 	}, [status]);
 
+	useEffect(() => {
+		if (
+			localStorage.getItem('accessToken') &&
+			localStorage.getItem('refreshToken') &&
+			localStorage.getItem('user')
+		) {
+			navigate('/dashboard');
+		}
+	}, []);
+
 	return (
 		<Grid container>
 			<Box

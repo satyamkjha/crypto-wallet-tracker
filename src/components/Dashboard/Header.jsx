@@ -63,6 +63,14 @@ export default function Header({ selectedMenu }) {
 		} catch (e) {
 			console.log(e);
 		}
+
+		if (
+			!localStorage.getItem('accessToken') ||
+			!localStorage.getItem('refreshToken') ||
+			!localStorage.getItem('user')
+		) {
+			navigate('/login');
+		}
 	}, []);
 
 	return (
@@ -146,12 +154,12 @@ export default function Header({ selectedMenu }) {
 								disablePadding>
 								<ListItemButton
 									onClick={() => {
-										navigate('/pricing');
+										navigate('/billing');
 									}}>
 									<ListItemIcon>
 										<LocalOfferRoundedIcon />
 									</ListItemIcon>
-									<ListItemText primary={'Pricing'} />
+									<ListItemText primary={'Billing'} />
 								</ListItemButton>
 							</ListItem>
 							<ListItem
@@ -211,9 +219,9 @@ export default function Header({ selectedMenu }) {
 								borderRadius: selectedMenu === 1 && 0.8,
 							}}
 							onClick={() => {
-								navigate('/pricing');
+								navigate('/billing');
 							}}>
-							Pricing
+							Billing
 						</Button>
 
 						<Button
