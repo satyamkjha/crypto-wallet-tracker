@@ -150,7 +150,7 @@ export default function PublicFooter() {
 								onClick={() => {
 									window.open(item.link, '_blank');
 								}}
-								src={`/static/images/socials/${item.imgUrl}.svg`}
+								src={`${assetsURL}landing/socials/${item.imgUrl}.svg`}
 							/>
 						))}
 					</Stack>
