@@ -31,7 +31,7 @@ export default function Dashboard() {
         <>
             <Header selectedMenu={0} />
 
-            <Container maxWidth='80vw' sx={{ marginTop: 5, maxWidth: '80vw' }}>
+            <Container maxWidth={'80vw'} sx={{ marginTop: 5, maxWidth: '1800px', width: '95vw'}}>
                 <Typography variant='h6' sx={{ marginBottom: 2 }}>Your Ongoing Investigations</Typography>
 
                 <Grid container spacing={2}>
@@ -40,9 +40,10 @@ export default function Dashboard() {
                             return <InvestigationCard investigation={investigation} />
                         })
                     }
+                    
 
                     {
-                        planStats?.remaining_investigations > 0 && <Grid item md={3} xs={12}>
+                        planStats?.remaining_investigations > 0 && <Grid item lg={3} md={6} xs={12}>
                             <Button
                                 p={2}
                                 onClick={() => { dispatch(updateOpenCreateInvestigationDialog(true)) }}
@@ -87,7 +88,7 @@ export default function Dashboard() {
 
                 <Grid container spacing={2}>
                     {/*  Ongoing investigations */}
-                    <Grid item md={3} xs={12}>
+                    <Grid item lg={3} md={6} xs={12}>
                         <Box
                             p={3}
                             pb={0}
@@ -120,7 +121,7 @@ export default function Dashboard() {
                     </Grid>
 
                     {/*  Active plans */}
-                    <Grid item md={3} xs={12}>
+                    <Grid item lg={3} md={6} xs={12}>
                         <Box
                             p={3}
                             pb={0}
@@ -157,7 +158,7 @@ export default function Dashboard() {
                     </Grid>
 
                     {/* Notifications enabled */}
-                    <Grid item md={3} xs={12}>
+                    <Grid item lg={3} md={6} xs={12}>
                         <Box
                             p={3}
                             pb={0}
@@ -190,7 +191,7 @@ export default function Dashboard() {
                     </Grid>
 
                     {/* Channels added */}
-                    <Grid item md={3} xs={12}>
+                    <Grid item lg={3} md={6} xs={12}>
                         <Box
                             p={3}
                             pb={0}

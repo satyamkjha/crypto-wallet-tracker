@@ -1,6 +1,7 @@
 import { Container, Typography, Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Dashboard/Header';
+import { assetsURL } from '../../utils/assetsURL';
 
 export default function PaymentCancel() {
     const navigate = useNavigate()
@@ -28,7 +29,7 @@ export default function PaymentCancel() {
                             marginBottom: 2
                         }}
                         alt="ethereum"
-                        src='/static/payment-error.png'
+                        src={`${assetsURL}payment-error.png`}
                     />
 
                     <Typography variant='h2' sx={{ marginBottom: 2 }} color='error'>Payment Declined</Typography>

@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  wallet-tracker-frontend:
+    image: 132830644905.dkr.ecr.us-east-2.amazonaws.com/tracker_frontend:$ENV
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+    env_file:
+      - .env
+    command: >
+      sh -c "yarn global add serve && serve -s build"
+    healthcheck:
+      test: curl --fail http://localhost:5002 || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 1m
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+    networks:
+      - public
+      - default
+networks:
+  public:
+    external: true
+  default:

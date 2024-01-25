@@ -15,6 +15,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import axios from 'axios'
 import { backendServerBaseURL } from '../utils/backendServerBaseURL';
+import { assetsURL } from '../utils/assetsURL';
 
 export default function ForgotPassword() {
     const navigate = useNavigate()
@@ -39,7 +40,6 @@ export default function ForgotPassword() {
             ).then(
                 (response) => {
                     setSubmitting(false);
-                    console.log(response.data.data)
                     if (response.status === 200 && response.data.status === 'ok') {
                         navigate(`/forgot-password-link-sent-successfully`)
                     }
@@ -81,7 +81,7 @@ export default function ForgotPassword() {
                                         sx={{
                                             height: 42
                                         }}
-                                        src="/static/logo.jpg"
+                                        src={`${assetsURL}logo.jpg`}
                                     />
                                 </Box>
 
@@ -90,7 +90,9 @@ export default function ForgotPassword() {
                                         <PhotoCameraIcon />
                                     </Fab> */}
 
-                                    <Button variant="contained" sx={{ backgroundColor: 'primary.light' }}>Contact us</Button>
+                                    <Button onClick={() => {
+                                        window.open('mailto:info@credshields.com', '_blank');
+                                    }} variant="contained" sx={{ backgroundColor: 'primary.light' }}>Contact us</Button>
                                 </Box>
                             </Box>
                         </Container>
@@ -104,7 +106,7 @@ export default function ForgotPassword() {
                     minWidth='100%'
                     flexGrow='1'
                 >
-                    <Grid item xs={11} md={4}>
+                    <Grid item xs={11} sm={9} md={6} lg={5}>
                         <FormikProvider value={formik}>
                             <Box sx={{ backgroundColor: 'background.neutral', paddingTop: 5, paddingBottom: 5, paddingRight: { md: 8, xs: 3 }, paddingLeft: { md: 8, xs: 3 }, borderRadius: 1 }}>
                                 <Typography variant="h2" textAlign='center' pb={1}>

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { deleteInvestigation } from '../../redux/slices/dashboardSlice';
 import { chains } from '../../utils/supportedChains';
+import { assetsURL } from '../../utils/assetsURL';
 
 
 function InvestigationCard({ investigation }) {
@@ -14,7 +15,7 @@ function InvestigationCard({ investigation }) {
     const [deleting, setdeleting] = useState(false)
 
     return (
-        <Grid item md={3} xs={12}>
+        <Grid item lg={4} md={6} xs={12}>
             <Box
                 p={3}
                 pb={2}
@@ -43,7 +44,7 @@ function InvestigationCard({ investigation }) {
                                 maxWidth: 24,
                             }}
                             alt="ethereum"
-                            src={chains.filter(chain => chain.name == investigation.chain)[0].logo}
+                            src={`${assetsURL}${chains.filter(chain => chain.name == investigation.chain)[0].logo}`}
                         />
                     </Box>
 
@@ -61,7 +62,7 @@ function InvestigationCard({ investigation }) {
                     </Box>
 
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Box sx={{ flexGrow: 1, marginRight: 1 }}>
+                        <Box sx={{ flexGrow: 1, marginRight: 5 }}>
                             <Button variant='outlined' size='large' fullWidth onClick={() => { navigate(`/investigation/${investigation.id}/${investigation.number}/${investigation.address}/${investigation.chain}`) }}>View Investigation</Button>
                         </Box>
 

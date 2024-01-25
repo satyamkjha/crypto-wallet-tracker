@@ -1,9 +1,7 @@
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { assetsURL } from '../utils/assetsURL';
 
 export default function ForgotPasswordLinkSentSuccessfully() {
-    const navigate = useNavigate()
-
     return (
         <Grid container>
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100vh' }}>
@@ -21,7 +19,7 @@ export default function ForgotPasswordLinkSentSuccessfully() {
                                         sx={{
                                             height: 42
                                         }}
-                                        src="/static/logo.jpg"
+                                        src={`${assetsURL}logo.jpg`}
                                     />
                                 </Box>
 
@@ -30,7 +28,9 @@ export default function ForgotPasswordLinkSentSuccessfully() {
                                         <PhotoCameraIcon />
                                     </Fab> */}
 
-                                    <Button variant="contained" sx={{ backgroundColor: 'primary.light' }}>Contact us</Button>
+                                    <Button onClick={() => {
+                                        window.open('mailto:info@credshields.com', '_blank');
+                                    }} variant="contained" sx={{ backgroundColor: 'primary.light' }}>Contact us</Button>
                                 </Box>
                             </Box>
                         </Container>
@@ -56,7 +56,7 @@ export default function ForgotPasswordLinkSentSuccessfully() {
                                 marginBottom: 2
                             }}
                             alt="ethereum"
-                            src='/static/payment-success.png'
+                            src={`${assetsURL}payment-success.png`}
                         />
 
                         <Typography variant='h2' sx={{ marginBottom: 2 }} textAlign='center'>Password Reset Link <br />Sent Successfully</Typography>
