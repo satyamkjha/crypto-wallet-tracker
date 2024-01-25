@@ -35,12 +35,8 @@ export default function ErrorHandler({ children }) {
 					// window.open('/500', '_self');
 				}
 
-				if (
-					error.toJSON().status === 403 &&
-					Object.keys(error.response.data).includes('detail') == true &&
-					error.toJSON().data.detail === 'Wrong auth token'
-				) {
-					console.log(error.response);
+				if (error.response.status === 403 || error.response.status === 401) {
+					console.log(error);
 					logout();
 				}
 
