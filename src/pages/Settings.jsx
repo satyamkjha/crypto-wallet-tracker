@@ -393,6 +393,9 @@ export default function Settings() {
 								<Button
 									variant='outlined'
 									size='large'
+									onClick={() => {
+										window.open('mailto:info@credshields.com', '_blank');
+									}}
 									sx={{
 										backgroundColor: '#b3b3b3',
 										color: '#121212',

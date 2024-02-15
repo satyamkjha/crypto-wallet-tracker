@@ -35,12 +35,37 @@ import TelegramIntegrationDialog from '../components/Notifications/TelegramInteg
 import { getPlanStats, selectPlanStats } from '../redux/slices/dashboardSlice';
 import { assetsURL } from '../utils/assetsURL';
 import LoadingButton from '@mui/lab/LoadingButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 export default function Notifications() {
 	const dispatch = useDispatch();
 	const notifications = useSelector(selectNotifications);
 	const [searchParams] = useSearchParams();
 	const planStats = useSelector(selectPlanStats);
+
+	const [open, setOpen] = React.useState(false);
+
+	const handleClose = (event, reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+
+		setOpen(false);
+	};
+
+	const action = (
+		<React.Fragment>
+			<IconButton
+				size='small'
+				aria-label='close'
+				color='inherit'
+				onClick={handleClose}>
+				<CloseIcon fontSize='small' />
+			</IconButton>
+		</React.Fragment>
+	);
 
 	useEffect(() => {
 		dispatch(getNotifications());
@@ -69,6 +94,7 @@ export default function Notifications() {
 			`${backendServerBaseURL}/api/notifications/disable`,
 			config
 		);
+		setOpen(true);
 	};
 
 	return (
@@ -280,7 +306,19 @@ export default function Notifications() {
 					)}
 				</Grid>
 			</Container>
-
+			<Snackbar
+				open={open}
+				autoHideDuration={3000}
+				onClose={handleClose}
+				action={action}>
+				<Alert
+					onClose={handleClose}
+					severity='success'
+					variant='filled'
+					sx={{ width: '100%' }}>
+					Notifications Disabled
+				</Alert>
+			</Snackbar>
 			<CreateNotification />
 			<EditNotification />
 			<TelegramIntegrationDialog />

@@ -177,21 +177,23 @@ export default function Header({ selectedMenu }) {
 									<ListItemText primary={'Notifications'} />
 								</ListItemButton>
 							</ListItem>
-							<ListItem
-								sx={{
-									marginBottom: 2,
-								}}
-								disablePadding>
-								<ListItemButton
-									onClick={() => {
-										navigate('/settings');
-									}}>
-									<ListItemIcon>
-										<SettingsRoundedIcon />
-									</ListItemIcon>
-									<ListItemText primary={'Settings'} />
-								</ListItemButton>
-							</ListItem>
+							{MetaMaskAddress === '' && (
+								<ListItem
+									sx={{
+										marginBottom: 2,
+									}}
+									disablePadding>
+									<ListItemButton
+										onClick={() => {
+											navigate('/settings');
+										}}>
+										<ListItemIcon>
+											<SettingsRoundedIcon />
+										</ListItemIcon>
+										<ListItemText primary={'Settings'} />
+									</ListItemButton>
+								</ListItem>
+							)}
 						</List>
 					</Box>
 				</Drawer>
@@ -237,18 +239,20 @@ export default function Header({ selectedMenu }) {
 							Notifications
 						</Button>
 
-						<Button
-							startIcon={<SettingsRoundedIcon />}
-							variant='text'
-							sx={{
-								backgroundColor: selectedMenu === 3 && 'background.neutral',
-								borderRadius: selectedMenu === 3 && 0.8,
-							}}
-							onClick={() => {
-								navigate('/settings');
-							}}>
-							Settings
-						</Button>
+						{MetaMaskAddress === '' && (
+							<Button
+								startIcon={<SettingsRoundedIcon />}
+								variant='text'
+								sx={{
+									backgroundColor: selectedMenu === 3 && 'background.neutral',
+									borderRadius: selectedMenu === 3 && 0.8,
+								}}
+								onClick={() => {
+									navigate('/settings');
+								}}>
+								Settings
+							</Button>
+						)}
 					</Stack>
 				)}
 

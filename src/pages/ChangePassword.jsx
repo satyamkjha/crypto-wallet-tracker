@@ -253,7 +253,11 @@ export default function ChangePassword() {
 
 										<Typography color='text.secondary' variant='subtitle2'>
 											Facing any issue?{' '}
-											<Link to='/forgotpassword' color='inherit'>
+											<Link
+												onClick={() => {
+													window.open('mailto:info@credshields.com', '_blank');
+												}}
+												color='inherit'>
 												Contact chat support
 											</Link>
 										</Typography>

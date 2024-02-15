@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import axiosInstance from '../utils/axios';
-import { useSnackbar } from '@mui/base';
-import { css, styled } from '@mui/system';
 import React from 'react';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 export default function ErrorHandler({ children }) {
-	const [open, setOpen] = React.useState(false);
-	const [message, setMessage] = React.useState('');
-
 	const logout = () => {
 		localStorage.removeItem('accessToken');
 		localStorage.removeItem('refreshToken');
@@ -15,9 +14,41 @@ export default function ErrorHandler({ children }) {
 		window.open('/login', '_self');
 	};
 
-	const handleClose = () => {
+	const [open, setOpen] = React.useState(false);
+	const [message, setMessage] = React.useState('');
+
+	const handleClick = () => {
+		setOpen(true);
+	};
+
+	useEffect(() => {
+		if (message !== '') {
+			setOpen(true);
+			setTimeout(() => {
+				setMessage('');
+			}, 3000);
+		}
+	}, [message]);
+
+	const handleClose = (event, reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+
 		setOpen(false);
 	};
+
+	const action = (
+		<React.Fragment>
+			<IconButton
+				size='small'
+				aria-label='close'
+				color='inherit'
+				onClick={handleClose}>
+				<CloseIcon fontSize='small' />
+			</IconButton>
+		</React.Fragment>
+	);
 
 	useEffect(() => {
 		axiosInstance.interceptors.response.use(
@@ -32,7 +63,7 @@ export default function ErrorHandler({ children }) {
 
 				if (error.toJSON().status === 500) {
 					console.log('500 Error');
-					// window.open('/500', '_self');
+					setMessage('Internal Server error');
 				}
 
 				if (error.response.status === 403 || error.response.status === 401) {
@@ -46,10 +77,7 @@ export default function ErrorHandler({ children }) {
 						error.response.data.detail == 'Your subscription is expired'
 					) {
 						console.log('Subscription Expired');
-						// window.open(
-						// 	'/pricing?open_subscription_expired_dialog=True',
-						// 	'_self'
-						// );
+						setMessage(error.response.data.detail);
 					}
 				}
 
@@ -59,5 +87,22 @@ export default function ErrorHandler({ children }) {
 		);
 	}, []);
 
-	return <>{children}</>;
+	return (
+		<>
+			<Snackbar
+				open={open}
+				autoHideDuration={3000}
+				onClose={handleClose}
+				action={action}>
+				<Alert
+					onClose={handleClose}
+					severity='error'
+					variant='filled'
+					sx={{ width: '100%' }}>
+					{message}
+				</Alert>
+			</Snackbar>
+			{children}
+		</>
+	);
 }

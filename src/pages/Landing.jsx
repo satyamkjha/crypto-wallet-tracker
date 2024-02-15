@@ -524,7 +524,9 @@ export default function Landing() {
 
 						<Button
 							marginTop={'30px'}
-							onClick={() => {}}
+							onClick={() => {
+								window.open('mailto:info@credshields.com', '_blank');
+							}}
 							sx={{
 								width: '250px',
 							}}
