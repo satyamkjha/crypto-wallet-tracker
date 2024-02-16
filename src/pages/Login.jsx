@@ -138,24 +138,24 @@ export default function Login() {
 			});
 	};
 
-	window.onload = function () {
-		window.setTimeout(() => {
-			window.google.accounts.id.initialize({
-				client_id: googleClientId,
-				callback: googleSignupSuccess,
-			});
-			window.google.accounts.id.renderButton(
-				document.getElementById('buttonDiv'),
-				{
-					theme: 'outline',
-					size: 'large',
-					width: ref.current.offsetWidth,
-					borderRadius: 4,
-					height: '6rem',
-				}
-			);
-		}, 400);
-	};
+	// window.onload = function () {
+	// 	window.setTimeout(() => {
+	// 		window.google.accounts.id.initialize({
+	// 			client_id: googleClientId,
+	// 			callback: googleSignupSuccess,
+	// 		});
+	// 		window.google.accounts.id.renderButton(
+	// 			document.getElementById('buttonDiv'),
+	// 			{
+	// 				theme: 'outline',
+	// 				size: 'large',
+	// 				width: ref.current.offsetWidth,
+	// 				borderRadius: 4,
+	// 				height: '6rem',
+	// 			}
+	// 		);
+	// 	}, 400);
+	// };
 
 	// Metamask login
 	const { status, connect, ethereum } = useMetaMask();
@@ -411,13 +411,13 @@ export default function Login() {
                                             onClick={showGoogleSignupPrompt}
                                         >Continue with Google</Button> */}
 
-										<div
+										{/* <div
 											id='buttonDiv'
 											style={{
 												display: 'flex',
 												justifyContent: 'center',
 												alignItems: 'center',
-											}}></div>
+											}}></div> */}
 
 										<Box
 											pr={1}

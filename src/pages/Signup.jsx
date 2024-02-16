@@ -155,24 +155,24 @@ export default function Signup() {
 			});
 	};
 
-	window.onload = function () {
-		window.setTimeout(() => {
-			window.google.accounts.id.initialize({
-				client_id: googleClientId,
-				callback: googleSignupSuccess,
-			});
-			window.google.accounts.id.renderButton(
-				document.getElementById('buttonDiv'),
-				{
-					theme: 'outline',
-					size: 'large',
-					width: ref.current.offsetWidth,
-					borderRadius: 4,
-					height: '6rem',
-				}
-			);
-		}, 400);
-	};
+	// window.onload = function () {
+	// 	window.setTimeout(() => {
+	// 		window.google.accounts.id.initialize({
+	// 			client_id: googleClientId,
+	// 			callback: googleSignupSuccess,
+	// 		});
+	// 		window.google.accounts.id.renderButton(
+	// 			document.getElementById('buttonDiv'),
+	// 			{
+	// 				theme: 'outline',
+	// 				size: 'large',
+	// 				width: ref.current.offsetWidth,
+	// 				borderRadius: 4,
+	// 				height: '6rem',
+	// 			}
+	// 		);
+	// 	}, 400);
+	// };
 
 	// Metamask signup
 	const { status, connect, account, chainId, ethereum } = useMetaMask();
@@ -250,7 +250,6 @@ export default function Signup() {
 									}}
 									src={`${assetsURL}logo.jpg`}
 								/>{' '}
-								
 							</Box>
 						</Container>
 					</Box>
@@ -517,13 +516,13 @@ export default function Signup() {
                                             onClick={showGoogleSignupPrompt}
                                         >Continue with Google</Button> */}
 
-											<div
+											{/* <div
 												id='buttonDiv'
 												style={{
 													display: 'flex',
 													justifyContent: 'center',
 													alignItems: 'center',
-												}}></div>
+												}}></div> */}
 
 											<Box pr={1} pl={1} pt={1}>
 												<Button
